@@ -6,7 +6,7 @@ import StarIcon from '@mui/icons-material/Star';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import { useState } from "react";
 import Reviews from "../../components/reviews/Reviews";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { makeRequest } from "../../axios";
 
 function ShowCampground() {
@@ -22,6 +22,8 @@ function ShowCampground() {
     e.stopPropagation();
     setFavorite(!favorite);
   }
+
+  const queryClient = useQueryClient();
 
   if (reviewsIsOpen) {
     document.body.classList.add('hide-scrollbar');
