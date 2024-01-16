@@ -57,6 +57,7 @@ function ShowCampground() {
 
     const handleDelete = () => {
         deleteMutation.mutate(id);
+        navigate("/");
     }
 
   // const data = {
@@ -97,7 +98,7 @@ function ShowCampground() {
               </span>
               ·
               <span className="reviewsCount" onClick={() => setReviewsIsOpen(true)}>
-                {reviews && reviews.length}
+                {reviews ? reviews.length : "0"} reseñas
               </span>
             </div>
             <div className="owner">
