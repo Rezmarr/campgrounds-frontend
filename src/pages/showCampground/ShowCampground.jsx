@@ -79,7 +79,7 @@ function ShowCampground() {
               </span>
               ·
               <span className="reviewsCount" onClick={() => setReviewsIsOpen(true)}>
-                {reviews.length}
+                {reviews && reviews.length}
               </span>
             </div>
             <div className="owner">
