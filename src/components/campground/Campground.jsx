@@ -25,7 +25,7 @@ function Campground({ data }) {
     ];
 
     return (
-        <div className="campground" >
+        <div className="campground" onClick={() => navigate(`/${data.id}`)}>
             <div className="body">
                 {/* <img src={data.images[0].filename} alt="" /> */}
                 {/* <Carousel showThumbs={false} renderArrowNext={(clickHandler, hasNext) => {
