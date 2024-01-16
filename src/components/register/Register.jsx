@@ -19,7 +19,7 @@ function Register({ setRegisterIsOpen }) {
         evt.preventDefault();
 
         try {
-            await axios.post("https://campground-api20240116001806.azurewebsites.net/api/auth/signin", inputs, {
+            await axios.post("https://campground-api20240116164010.azurewebsites.net/api/auth/signin", inputs, {
                 // withCredentials: true
             })
             //Manejar login
