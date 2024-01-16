@@ -36,7 +36,7 @@ function ShowCampground() {
   )
 
   const { isLoading: reviewsIsLoading, error: reviewsError, data: reviews } = useQuery(['reviews', id], () =>
-    makeRequest.get(`/reviews/${id}`).then(res => {
+    makeRequest.get(`/campground/${id}/reviews`).then(res => {
       return res.data;
     })
   )
