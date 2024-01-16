@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./editCampground.scss";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useMutation, useQueryClient } from "react-query";
@@ -16,6 +16,8 @@ function EditCampground() {
   const { state } = location;
 
   const data = state && state.data;
+
+  const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({ title: data.title, location: data.location, price: data.price, description: data.description })
   const [files, setFiles] = useState(null);
@@ -43,7 +45,8 @@ function EditCampground() {
   }, {
     onSuccess: () => {
       //Invalidate and refetch
-      queryClient.invalidateQueries(['campground', data.id])
+      queryClient.invalidateQueries(['campground', data.id]);
+      navigate(`/${data.id}`);
     },
   })
 
