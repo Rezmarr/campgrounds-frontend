@@ -1,0 +1,124 @@
+@import "../../style.scss";
+
+.createCampground {
+    @include themify($themes) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 30px 10px;
+        min-height: calc(100vh - 130px);
+        background-color: themed("bgSoft");
+
+        @include mobile {
+            padding: 30px 0;
+        }
+
+        .container {
+            background-color: themed("bg");
+            width: 600px;
+            border-radius: 15px;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            color: themed("textColor");
+
+            -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+            -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+            box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+
+            @include mobile {
+                width: 100%;
+            }
+
+            p {
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .item {
+                display: flex;
+                flex-direction: column;
+                width: 500px;
+                gap: 10px;
+
+                @include mobile {
+                    width: 300px;
+                }
+
+                label {
+                    font-weight: 700;
+                    font-size: 18px;
+                }
+
+                input,
+                textarea {
+                    padding: 15px;
+                    outline: none;
+                    border: none;
+                    background-color: themed("bgSoft");
+                    border-bottom: 1px solid themed("border");
+                    color: themed("textColor");
+                    border-radius: 5px;
+                    font-family: inherit;
+                    resize: none;
+                }
+
+                div {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        background-color: themed("textColor");
+                        color: themed("bg");
+                        padding: 13px;
+                        border-radius: 5px 0 0 5px;
+                    }
+
+                    input {
+                        border-radius: 0 5px 5px 0;
+                    }
+                }
+
+                button {
+                    padding: 12px;
+                    border-radius: 15px;
+                    border: none;
+                    cursor: pointer;
+                    color: white;
+                    font-weight: 600;
+                    font-size: 14px;
+                    width: 300px;
+                    background-color: #ff3370;
+                    align-self: center;
+                    transition: 0.1s ease-out;
+                }
+
+                button:hover {
+                    background-color: #b10035;
+                    transition: 0.1s ease-in;
+                }
+            }
+
+            .images {
+                label {
+                    background-color: themed("textColor");
+                    color: themed("bg");
+                    padding: 10px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                }
+
+                input {
+                    display: none;
+                }
+            }
+        }
+    }
+}

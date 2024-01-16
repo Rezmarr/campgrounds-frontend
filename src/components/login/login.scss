@@ -1,0 +1,169 @@
+@import "../../style.scss";
+
+@keyframes slideUp {
+    from {
+        transform: translateY(500px);
+    }
+
+    to {
+        transform: translateY(0px);
+    }
+}
+
+.login {
+    @include themify($themes) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+
+        -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+        -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+        box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+
+        animation: 3s ease-in 1s reverse both running slidein;
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 450px;
+            background-color: themed("bg");
+            border-radius: 15px;
+            min-height: 450px;
+            padding: 10px 40px;
+            align-items: center;
+            gap: 20px;
+            animation: slideUp 300ms ease-in-out;
+            animation-iteration-count: 1;
+
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                border-bottom: 1px solid themed("border");
+                padding: 15px;
+                width: 100%;
+
+                h1 {
+                    color: themed("textColor");
+                    font-size: 20px;
+                }
+
+                .close {
+                    position: absolute;
+                    left: 0;
+                    top: 14px;
+                    font-size: 20px;
+                    font-weight: 700;
+                    transition: 0.2s ease-out;
+                    padding: 8px;
+                    border-radius: 50%;
+                    width: 20px;
+                    height: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                }
+
+                .close:hover {
+                    background-color: themed("bgSoft");
+                    transition: 0.2s ease-in;
+                }
+            }
+
+            p {
+                align-self: flex-start;
+                font-size: 22px;
+                font-weight: 600;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+
+                input {
+                    padding: 20px 10px;
+                    border: none;
+                    border-bottom: 1px solid lightgray;
+                    outline: none;
+                    border-radius: 5px;
+                }
+
+                button {
+                    width: 100%;
+                    padding: 15px;
+                    border: none;
+                    background-color: #ff3370;
+                    color: white;
+                    font-weight: bold;
+                    cursor: pointer;
+                    border-radius: 6px;
+                    align-self: center;
+                    margin-top: 15px;
+                    font-size: inherit;
+                    transition: 0.1s ease-out;
+                }
+
+                button:hover {
+                    background-color: #b10035;
+                    transition: 0.1s ease-in;
+                }
+            }
+
+            .division {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+
+                hr {
+                    width: 47%;
+                    border: none;
+                    border-bottom: 1px solid themed("border");
+                }
+
+                span {
+                    font-size: 12px;
+                }
+            }
+
+            .google {
+                display: flex;
+                align-items: center;
+                padding: 15px;
+                width: 100%;
+                justify-content: center;
+                font-family: inherit;
+                border-radius: 10px;
+                border: 1px solid themed("textColor");
+                background-color: white;
+                cursor: pointer;
+                transition: 0.1s ease-out;
+                font-size: 15px;
+                position: relative;
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    left: 20px;
+                }
+            }
+
+            .google:hover {
+                background-color: gray;
+                // color: ;
+                transition: 0.1s ease-in;
+            }
+        }
+    }
+}
