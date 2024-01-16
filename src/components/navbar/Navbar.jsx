@@ -80,7 +80,7 @@ function Navbar() {
           </div> :
           <div className="user">
             <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="" />
-            <span>Username</span>
+            <span>{currentUser.firstName+" "+currentUser.lastName}</span>
           </div>
         }
         {userOptionsOpen &&
