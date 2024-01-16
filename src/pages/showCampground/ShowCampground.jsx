@@ -51,13 +51,13 @@ function ShowCampground() {
             onSuccess: () => {
                 //Invalidate and refetch
                 queryClient.invalidateQueries(["campgrounds"]);
+                navigate("/");
             }
         }
     );
 
     const handleDelete = () => {
         deleteMutation.mutate(id);
-        navigate("/");
     }
 
   // const data = {
