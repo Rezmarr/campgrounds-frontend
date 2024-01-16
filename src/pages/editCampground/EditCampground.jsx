@@ -23,6 +23,10 @@ function EditCampground() {
 
   const queryClient = useQueryClient();
 
+  const handleChange = (e) => {
+    setInputs((currInputs) => ({ ...currInputs, [e.target.name]: e.target.value }));
+  }
+
     // const upload = async () => {
   //   try {
   //     const formData = new FormData();
