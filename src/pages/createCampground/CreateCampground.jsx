@@ -15,6 +15,8 @@ function CreateCampground() {
 
   const queryClient = useQueryClient();
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setInputs((currInputs) => ({ ...currInputs, [e.target.name]: e.target.value }));
   }
@@ -35,7 +37,8 @@ function CreateCampground() {
   }, {
     onSuccess: () => {
       //Invalidate and refetch
-      queryClient.invalidateQueries(['campgrounds'])
+      queryClient.invalidateQueries(['campgrounds']);
+      navigate("/");
     },
   })
 
