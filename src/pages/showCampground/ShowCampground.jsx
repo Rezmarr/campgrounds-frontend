@@ -41,6 +41,22 @@ function ShowCampground() {
     })
   )
 
+  const deleteMutation = useMutation(
+        (postId) => {
+            return makeRequest.delete(`/campground/${id}`);
+        },
+        {
+            onSuccess: () => {
+                //Invalidate and refetch
+                queryClient.invalidateQueries(["campgrounds"]);
+            }
+        }
+    );
+
+    const handleDelete = () => {
+        deleteMutation.mutate(id);
+    }
+
   // const data = {
   //   id: 1,
   //   title: "Camping Río Serpenteante",
@@ -93,7 +109,7 @@ function ShowCampground() {
               <button className="update" onClick={() => navigate(`/edit/${id}`, { state: { data } })}>
                 Actualizar información
               </button>
-              <button className="delete">
+              <button className="delete" onClick={handleDelete}>
                 Eliminar
               </button>
             </div>
