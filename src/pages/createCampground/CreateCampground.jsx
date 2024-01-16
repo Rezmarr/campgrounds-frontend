@@ -4,6 +4,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useMutation, useQueryClient } from "react-query";
 import { makeRequest } from "../../axios.js";
 import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding";
+import { useNavigate } from "react-router-dom";
 
 const mapBoxToken = "pk.eyJ1IjoicmV6bWFhcnIiLCJhIjoiY2xsOHVubXZuMTZudjNybnd1Y3NseGRpbyJ9.NdjKtULmrVndUqVMNLfeQA";
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
