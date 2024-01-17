@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { makeRequest } from "../../axios.js";
 import { AuthContext } from "../../context/authContext";
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
 function Reviews({ score, campgroundId, reviews, setReviewsIsOpen }) {
 
@@ -95,20 +96,21 @@ function Reviews({ score, campgroundId, reviews, setReviewsIsOpen }) {
                                 <div className="author">
                                     <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="" />
                                     <div className="text">
-                                        <span className="name">{review.username}</span>
+                                        <span className="name">{review.user.firstName + " " + review.user.lastName}</span>
                                         {/* <span className="location">Lima, Perú</span> */}
                                     </div>
                                 </div>
                                 <div className="calif">
                                     <div className="stars">
-                                        <StarIcon className="star" />
-                                        <StarIcon className="star" />
-                                        <StarIcon className="star" />
-                                        <StarIcon className="star" />
-                                        <StarIcon className="star" />
+                                        {Array.from({ length: review.scoring }, (_, i) => (
+                                            <StarIcon key={i} className="star" />
+                                        ))}
+                                        {Array.from({ length: 5 - review.scoring }, (_, i) => (
+                                            <StarOutlineIcon key={i + review.scoring} className="star" />
+                                        ))}
                                     </div>
                                     ·
-                                    <span>Hace 1 semana</span>createdAt DATETIME
+                                    <span>createdAt</span>
                                 </div>
                                 <div className="desc">
                                     {review.body}
