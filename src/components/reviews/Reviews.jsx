@@ -67,7 +67,7 @@ function Reviews({ score, campgroundId, reviews, setReviewsIsOpen }) {
                             <div className="author">
                                 <img src="https://images.pexels.com/photos/19426671/pexels-photo-19426671/free-photo-of-hamid-sefat.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
                                 <div className="text">
-                                    <span className="name">{currentUser.firstName + currentUser.lastName}</span>
+                                    <span className="name">{currentUser.firstName + " " + currentUser.lastName}</span>
                                     <span className="location">Lima, Perú</span>
                                 </div>
                                 <div className="stars">
