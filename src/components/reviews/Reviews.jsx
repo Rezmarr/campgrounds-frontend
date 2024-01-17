@@ -18,7 +18,7 @@ function Reviews({ score, campgroundId, reviews, setReviewsIsOpen }) {
     const { currentUser } = useContext(AuthContext);
 
     const mutation = useMutation((newReview) => {
-        return makeRequest.post("/reviews", newReview);
+        return makeRequest.post("/review", newReview);
     }, {
         onSuccess: () => {
             //Invalidate and refetch
@@ -28,7 +28,7 @@ function Reviews({ score, campgroundId, reviews, setReviewsIsOpen }) {
 
     const handleClick = async e => {
         e.preventDefault();
-        mutation.mutate({ campgroundId: campgroundId, body: desc })
+        mutation.mutate({ campgroundId: campgroundId, body: desc, scoring: (value + 1) })
         setDesc("")
         setValue(0)
     };

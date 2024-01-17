@@ -8,8 +8,6 @@ function Map({ campground }) {
 
     const { darkMode } = useContext(DarkModeContext);
 
-    console.log(darkMode)
-
     useEffect(() => {
         mapboxgl.accessToken = 'pk.eyJ1IjoicmV6bWFhcnIiLCJhIjoiY2xsOHVubXZuMTZudjNybnd1Y3NseGRpbyJ9.NdjKtULmrVndUqVMNLfeQA';
 
