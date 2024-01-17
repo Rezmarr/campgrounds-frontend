@@ -4,11 +4,12 @@ import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import StarIcon from '@mui/icons-material/Star';
 import IosShareIcon from '@mui/icons-material/IosShare';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Reviews from "../../components/reviews/Reviews";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { makeRequest, makeRequestPublic } from "../../axios";
 import Map from "../../components/map/Map";
+import { AuthContext } from "../../context/authContext";
 
 function ShowCampground() {
 
@@ -18,6 +19,8 @@ function ShowCampground() {
 
   const [favorite, setFavorite] = useState(false);
   const [reviewsIsOpen, setReviewsIsOpen] = useState(false);
+
+  const { currentUser } = useContext(AuthContext);
 
   const handleFavorite = (e) => {
     e.stopPropagation();
@@ -116,14 +119,16 @@ function ShowCampground() {
             <div className="details">
               {data.description}
             </div>
-            <div className="buttons">
-              <button className="update" onClick={() => navigate(`/edit/${id}`, { state: { data } })}>
-                Actualizar información
-              </button>
-              <button className="delete" onClick={handleDelete}>
-                Eliminar
-              </button>
-            </div>
+            {data.user.id === currentUser.id ?
+              <div className="buttons">
+                <button className="update" onClick={() => navigate(`/edit/${id}`, { state: { data } })}>
+                  Actualizar información
+                </button>
+                <button className="delete" onClick={handleDelete}>
+                  Eliminar
+                </button>
+              </div> : <></>
+            }
           </div>
           <div className="mapContainer">
             <span>A dónde irás</span>

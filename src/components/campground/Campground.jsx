@@ -28,7 +28,7 @@ function Campground({ data }) {
 
     return (
         // onClick={() => navigate(`/${data.id}`)}
-        <div className="campground" onClick={() => navigate(`/${data.id}`)}>
+        <div className="campground">
             <div className="body">
                 {/* <img src={data.images[0].filename} alt="" /> */}
                 <Carousel showStatus={false} showThumbs={false} renderArrowNext={(clickHandler, hasNext) => {
@@ -53,7 +53,7 @@ function Campground({ data }) {
                 {/* <img src="https://cdn.pixabay.com/photo/2016/01/26/23/32/camp-1163419_1280.jpg" alt="" /> */}
                 {favorite ? <FavoriteIcon onClick={handleFavorite} className="favorite" style={{ color: "red" }} /> : <FavoriteTwoToneIcon onClick={handleFavorite} className="favorite" />}
             </div>
-            <div className="footer">
+            <div className="footer" onClick={() => navigate(`/${data.id}`)}>
                 <span className="title">
                     <p>{data.title}</p>
                     <span className="rating">
