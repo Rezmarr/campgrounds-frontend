@@ -1,13 +1,25 @@
-#root, body {
+@font-face {
+  font-family: 'MiFuente';
+  /* Puedes asignar un nombre a tu fuente */
+  src: url('fonts/CircularStd-Book.otf') format('truetype');
+  /* Ruta a tu archivo de fuente */
+}
+
+#root,
+body {
   margin: 0;
   height: 100dvh;
   padding: 0;
   width: 100%;
+  font-family: 'MiFuente', sans-serif;
 }
 
-h1, p{
+h1,
+p {
   margin: 0;
 }
+
+
 
 /* .logo {
   height: 6em;
