@@ -7,7 +7,7 @@ import IosShareIcon from '@mui/icons-material/IosShare';
 import { useState } from "react";
 import Reviews from "../../components/reviews/Reviews";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { makeRequest } from "../../axios";
+import { makeRequest, makeRequestPublic } from "../../axios";
 import Map from "../../components/map/Map";
 
 function ShowCampground() {
@@ -33,13 +33,13 @@ function ShowCampground() {
   }
 
   const { isLoading, error, data } = useQuery(['campground', id], () =>
-    makeRequest.get(`/campground/${id}`).then(res => {
+    makeRequestPublic.get(`/campground/${id}`).then(res => {
       return res.data;
     })
   )
 
   const { isLoading: reviewsIsLoading, error: reviewsError, data: reviews } = useQuery(['reviews', id], () =>
-    makeRequest.get(`/campground/${id}/reviews`).then(res => {
+    makeRequestPublic.get(`/campground/${id}/reviews`).then(res => {
       return res.data;
     })
   )
