@@ -8,6 +8,7 @@ import { useState } from "react";
 import Reviews from "../../components/reviews/Reviews";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { makeRequest } from "../../axios";
+import Map from "../../components/map/Map";
 
 function ShowCampground() {
 
@@ -31,17 +32,17 @@ function ShowCampground() {
     document.body.classList.remove('hide-scrollbar');
   }
 
-  const { isLoading, error, data } = useQuery(['campground', id], () =>
-    makeRequest.get(`/campground/${id}`).then(res => {
-      return res.data;
-    })
-  )
+  // const { isLoading, error, data } = useQuery(['campground', id], () =>
+  //   makeRequest.get(`/campground/${id}`).then(res => {
+  //     return res.data;
+  //   })
+  // )
 
-  const { isLoading: reviewsIsLoading, error: reviewsError, data: reviews } = useQuery(['reviews', id], () =>
-    makeRequest.get(`/campground/${id}/reviews`).then(res => {
-      return res.data;
-    })
-  )
+  // const { isLoading: reviewsIsLoading, error: reviewsError, data: reviews } = useQuery(['reviews', id], () =>
+  //   makeRequest.get(`/campground/${id}/reviews`).then(res => {
+  //     return res.data;
+  //   })
+  // )
 
   const deleteMutation = useMutation(
     (postId) => {
@@ -60,21 +61,21 @@ function ShowCampground() {
     deleteMutation.mutate(id);
   }
 
-  // const data = {
-  //   id: 1,
-  //   title: "Camping Río Serpenteante",
-  //   price: 35,
-  //   location: "Valle Pintoresco",
-  //   description: "Acampa junto al río serpenteante y sumérgete en la belleza natural del valle.",
-  //   picture: "https://cdn.pixabay.com/photo/2021/01/04/10/45/tent-5887144_1280.jpg",
-  //   user: {
-  //     firstName: "John",
-  //     lastName: "Doe"
-  //   },
-  //   latitude: "21",
-  //   longitud: "414",
-  //   score: "0"
-  // };
+  const data = {
+    id: 1,
+    title: "Camping Río Serpenteante",
+    price: 35,
+    location: "Valle Pintoresco",
+    description: "Acampa junto al río serpenteante y sumérgete en la belleza natural del valle.",
+    picture: "https://cdn.pixabay.com/photo/2021/01/04/10/45/tent-5887144_1280.jpg",
+    user: {
+      firstName: "John",
+      lastName: "Doe"
+    },
+    latitude: "-77.1123622",
+    longitude: "-12.0445345",
+    score: "0"
+  };
 
   return (
     <div className="showCampground">
@@ -126,9 +127,10 @@ function ShowCampground() {
           </div>
           <div className="mapContainer">
             <span>A dónde irás</span>
-            <div className="map">
+            <Map campground={data} />
+            {/* <div className="map">
               <h2>Mapa {data.latitude}, {data.longitud}</h2>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>}
