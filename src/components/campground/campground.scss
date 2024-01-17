@@ -25,6 +25,37 @@
             position: relative;
             height: 250px;
 
+            .slide {
+                height: 250px;
+                
+                img {
+                    object-fit: cover;
+                }
+            }
+
+            .navRight, .navLeft {
+                background-color: themed("bg");
+                border-radius: 50%;
+                position: absolute;
+                top: 45%;
+                z-index: 1000;
+            }
+
+            .navRight {
+                left: 90%;
+                transition: 0.5s ease-out;
+            }
+
+            .navLeft {
+                right: 90%;
+            }
+
+            .navRight:hover, .navLeft:hover {
+                background-color: themed("border");
+                transform: scale(1.05);
+                transition: 0.1s ease-in;
+            }
+
             .favorite {
                 position: absolute;
                 color: white;
