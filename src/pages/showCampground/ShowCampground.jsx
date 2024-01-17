@@ -31,11 +31,11 @@ function ShowCampground() {
     document.body.classList.remove('hide-scrollbar');
   }
 
-  const { isLoading, error, data } = useQuery(['campground', id], () =>
-    makeRequest.get(`/campground/${id}`).then(res => {
-      return res.data;
-    })
-  )
+  // const { isLoading, error, data } = useQuery(['campground', id], () =>
+  //   makeRequest.get(`/campground/${id}`).then(res => {
+  //     return res.data;
+  //   })
+  // )
 
   const { isLoading: reviewsIsLoading, error: reviewsError, data: reviews } = useQuery(['reviews', id], () =>
     makeRequest.get(`/campground/${id}/reviews`).then(res => {
@@ -44,30 +44,37 @@ function ShowCampground() {
   )
 
   const deleteMutation = useMutation(
-        (postId) => {
-            return makeRequest.delete(`/campground/${id}`);
-        },
-        {
-            onSuccess: () => {
-                //Invalidate and refetch
-                queryClient.invalidateQueries(["campgrounds"]);
-                navigate("/");
-            }
-        }
-    );
-
-    const handleDelete = () => {
-        deleteMutation.mutate(id);
+    (postId) => {
+      return makeRequest.delete(`/campground/${id}`);
+    },
+    {
+      onSuccess: () => {
+        //Invalidate and refetch
+        queryClient.invalidateQueries(["campgrounds"]);
+        navigate("/");
+      }
     }
+  );
 
-  // const data = {
-  //   id: 1,
-  //   title: "Camping Río Serpenteante",
-  //   price: 35,
-  //   location: "Valle Pintoresco",
-  //   description: "Acampa junto al río serpenteante y sumérgete en la belleza natural del valle.",
-  //   picture: "https://cdn.pixabay.com/photo/2021/01/04/10/45/tent-5887144_1280.jpg"
-  // };
+  const handleDelete = () => {
+    deleteMutation.mutate(id);
+  }
+
+  const data = {
+    id: 1,
+    title: "Camping Río Serpenteante",
+    price: 35,
+    location: "Valle Pintoresco",
+    description: "Acampa junto al río serpenteante y sumérgete en la belleza natural del valle.",
+    picture: "https://cdn.pixabay.com/photo/2021/01/04/10/45/tent-5887144_1280.jpg",
+    user: {
+      firstName: "John",
+      lastName: "Doe"
+    },
+    latitude: "21",
+    longitud: "414",
+    score: "0"
+  };
 
   return (
     <div className="showCampground">
@@ -94,7 +101,7 @@ function ShowCampground() {
             <div className="top">
               <span className="rating">
                 <StarIcon className="star" />
-                <span>5.0</span>
+                <span>{data.score}</span>
               </span>
               ·
               <span className="reviewsCount" onClick={() => setReviewsIsOpen(true)}>
@@ -103,7 +110,7 @@ function ShowCampground() {
             </div>
             <div className="owner">
               <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="" />
-              <span>Publicado por: {data.username}</span>
+              <span>Publicado por: {data.user.firstName} {data.user.lastName}</span>
             </div>
             <div className="details">
               {data.description}
@@ -120,12 +127,12 @@ function ShowCampground() {
           <div className="mapContainer">
             <span>A dónde irás</span>
             <div className="map">
-              <h2>Mapa</h2>
+              <h2>Mapa {data.latitude}, {data.longitud}</h2>
             </div>
           </div>
         </div>
       </div>}
-      {reviewsIsOpen && <Reviews reviews={reviews} setReviewsIsOpen={setReviewsIsOpen} />}
+      {reviewsIsOpen && <Reviews score={data.score} campgroundId={id} reviews={reviews} setReviewsIsOpen={setReviewsIsOpen} />}
     </div>
   )
 }
