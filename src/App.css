@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'MiFuente';
   /* Puedes asignar un nombre a tu fuente */
-  src: url('fonts/CircularStd-Book.otf') format('truetype');
+  src: url('/fonts/CircularStd-Book.otf') format('truetype');
   /* Ruta a tu archivo de fuente */
 }
 
