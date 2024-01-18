@@ -3,6 +3,7 @@
   /* Puedes asignar un nombre a tu fuente */
   src: url('/fonts/CircularStd-Book.otf') format('truetype');
   /* Ruta a tu archivo de fuente */
+  text-rendering: optimizeLegibility;
 }
 
 #root,
