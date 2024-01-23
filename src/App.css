@@ -1,9 +1,17 @@
 @font-face {
   font-family: 'MiFuente';
-  /* Puedes asignar un nombre a tu fuente */
+  src: url('/fonts/CircularStd-Light.otf') format('truetype');
+  font-weight: normal; /* Peso ligero (light) */
+  /* text-rendering: optimizeLegibility; */
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MiFuente';
   src: url('/fonts/CircularStd-Book.otf') format('truetype');
-  /* Ruta a tu archivo de fuente */
-  text-rendering: optimizeLegibility;
+  font-weight: 700; /* Peso en negrita (bold) */
+  /* text-rendering: optimizeLegibility; */
+  font-display: swap;
 }
 
 #root,
@@ -13,6 +21,7 @@ body {
   padding: 0;
   width: 100%;
   font-family: 'MiFuente', sans-serif;
+  font-weight: normal;
 }
 
 h1,

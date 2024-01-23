@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import "./login.scss";
-import axios from "axios";
 import CloseIcon from '@mui/icons-material/Close';
 import { useGoogleLogin } from "@react-oauth/google";
 import { AuthContext } from "../../context/authContext";
+// import { OAuth2Client } from "google-auth-library";
 
 function Login({ setLoginIsOpen }) {
 
@@ -24,8 +24,24 @@ function Login({ setLoginIsOpen }) {
         }
     }
 
+    // const oAuth2Client = new OAuth2Client(
+    //     '359716433018-skuf9ju9t9u434vsg5285o8piuifb90k.apps.googleusercontent.com',
+    //     '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',
+    //     'postmessage',
+    // );
+
     const googleLogin = useGoogleLogin({
-        onSuccess: (tokenResponse) => console.log(tokenResponse)
+        onSuccess: async ({ code }) => {
+            // const tokens = await axios.post('http://localhost:3001/auth/google', {  // http://localhost:3001/auth/google backend that will exchange the code
+            //     code,
+            // });
+
+            // const { tokens } = await oAuth2Client.getToken(code); // exchange code for tokens
+            // console.log(tokens);
+
+            console.log(code);
+        },
+        flow: 'auth-code',
     });
 
     return (

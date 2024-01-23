@@ -56,8 +56,9 @@ function CreateCampground() {
     const latitude = geoData.body.features[0].geometry.coordinates[0];
     const longitude = geoData.body.features[0].geometry.coordinates[1];
 
-    console.log("Latitud:", latitude);
-    console.log("Longitud:", longitude);
+    // console.log("Latitud:", latitude);
+    // console.log("Longitud:", longitude);
+    // console.log(geoData)
 
     mutation.mutate({
       "title": inputs.title,

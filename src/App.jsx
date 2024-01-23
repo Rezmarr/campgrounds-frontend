@@ -19,7 +19,13 @@ function App() {
 
   const { darkMode } = useContext(DarkModeContext);
 
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
 
   const Layout = () => {
     return (
