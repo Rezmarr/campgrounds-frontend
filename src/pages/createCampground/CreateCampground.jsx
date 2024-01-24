@@ -55,20 +55,26 @@ function CreateCampground() {
     const longitude = geoData.body.features[0].geometry.coordinates[1];
 
     const formData = new FormData();
-    formData.append("images", files);
 
-    mutation.mutate({
-      "title": inputs.title,
-      "latitude": latitude,
-      "longitude": longitude,
-      "price": inputs.price,
-      "description": inputs.description,
-      "location": inputs.location,
-      formData,
-      "provinceId": 1
-    })
+    // Agregar campos de texto al FormData
+    formData.append("Title", inputs.title);
+    formData.append("Latitude", latitude);
+    formData.append("Longitude", longitude);
+    formData.append("Price", inputs.price);
+    formData.append("Description", inputs.description);
+    formData.append("Location", inputs.location);
+    formData.append("ProvinceId", 1);
 
-    console.log(files)
+    // Agregar imágenes al FormData
+    for (const file of files) {
+      formData.append("Images", file);
+    }
+
+    const requestBody = formData;
+
+    mutation.mutate(requestBody);
+
+    // console.log(files)
     // setInputs("")
     // setFiles(null)
   };
