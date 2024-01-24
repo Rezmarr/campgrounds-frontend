@@ -67,6 +67,7 @@ function CreateCampground() {
       "price": inputs.price,
       "description": inputs.description,
       "location": inputs.location,
+      "images": files
       // "images": [
       //   {
       //     "url": "",
