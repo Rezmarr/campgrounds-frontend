@@ -36,9 +36,10 @@ function CreateCampground() {
   const mutation = useMutation((newCampground) => {
     return makeRequest.post("/campground", newCampground);
   }, {
-    onSuccess: () => {
+    onSuccess: (res) => {
       //Invalidate and refetch
       queryClient.invalidateQueries(['campgrounds']);
+      console.log(res);
       navigate("/");
     },
   })
@@ -74,7 +75,7 @@ function CreateCampground() {
 
     mutation.mutate(requestBody);
 
-    console.log(files);
+    // console.log(files);
     // setInputs("")
     // setFiles(null)
   };
