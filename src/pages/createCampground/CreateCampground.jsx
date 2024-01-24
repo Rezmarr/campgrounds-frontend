@@ -64,9 +64,11 @@ function CreateCampground() {
       "price": inputs.price,
       "description": inputs.description,
       "location": inputs.location,
-      "images": formData,
+      "images": formData.get("Images"),
       "provinceId": 1
     })
+
+    console.log(formData)
     // setInputs("")
     // setFiles(null)
   };
