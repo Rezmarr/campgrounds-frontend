@@ -75,9 +75,7 @@ function EditCampground() {
     formData.append("ProvinceId", 1);
 
     // Agregar imágenes al FormData
-    for (const file of data.images) {
-      formData.append("Images", file);
-    }
+    formData.append("Images", new Blob());
 
     const requestBody = formData;
 
