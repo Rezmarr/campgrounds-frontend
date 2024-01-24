@@ -56,6 +56,9 @@ function CreateCampground() {
     const latitude = geoData.body.features[0].geometry.coordinates[0];
     const longitude = geoData.body.features[0].geometry.coordinates[1];
 
+    const formData = new FormData();
+    formData.append("files", files);
+
     // console.log("Latitud:", latitude);
     // console.log("Longitud:", longitude);
     // console.log(geoData)
@@ -67,7 +70,7 @@ function CreateCampground() {
       "price": inputs.price,
       "description": inputs.description,
       "location": inputs.location,
-      "images": files
+      "images": formData
       // "images": [
       //   {
       //     "url": "",
