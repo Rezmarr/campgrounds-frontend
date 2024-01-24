@@ -48,7 +48,7 @@ function ShowCampground() {
   )
 
   const deleteMutation = useMutation(
-    (postId) => {
+    () => {
       return makeRequest.delete(`/campground/${id}`);
     },
     {
@@ -61,7 +61,7 @@ function ShowCampground() {
   );
 
   const handleDelete = () => {
-    deleteMutation.mutate(id);
+    deleteMutation.mutate();
   }
 
   // const data = {
@@ -97,8 +97,8 @@ function ShowCampground() {
               </div>
             </div>
           </div>
-          {/* <img src={data.picture} alt="" /> */}
-          <img src="https://cdn.pixabay.com/photo/2016/01/26/23/32/camp-1163419_1280.jpg" alt="" />
+          <img src={data.images[0].url} alt="" />
+          {/* <img src="https://cdn.pixabay.com/photo/2016/01/26/23/32/camp-1163419_1280.jpg" alt="" /> */}
         </div>
         <div className="footer">
           <div className="information">
@@ -114,12 +114,12 @@ function ShowCampground() {
             </div>
             <div className="owner">
               <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="" />
-              <span>Publicado por: {data.user.firstName} {data.user.lastName}</span>
+              <span>Publicado por: {data.host.firstName} {data.host.lastName}</span>
             </div>
             <div className="details">
               {data.description}
             </div>
-            {data.user.id === currentUser.id ?
+            {data.host.id === currentUser.id ?
               <div className="buttons">
                 <button className="update" onClick={() => navigate(`/edit/${id}`, { state: { data } })}>
                   Actualizar información

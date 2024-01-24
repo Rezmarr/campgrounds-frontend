@@ -44,11 +44,18 @@ function Campground({ data }) {
                         )
                     );
                 }}>
-                    {images.map((URL, index) => (
-                        <div className="slide" key={index}>
-                            <img alt="sample_file" src={URL} />
-                        </div>
-                    ))}
+                    {data.images.length > 0 ?
+                        data.images.map((img, index) => (
+                            <div className="slide" key={index}>
+                                <img alt="sample_file" src={img.url} />
+                            </div>
+                        ))
+                        :
+                        images.map((URL, index) => (
+                            <div className="slide" key={index}>
+                                <img alt="sample_file" src={URL} />
+                            </div>
+                        ))}
                 </Carousel>
                 {/* <img src="https://cdn.pixabay.com/photo/2016/01/26/23/32/camp-1163419_1280.jpg" alt="" /> */}
                 {favorite ? <FavoriteIcon onClick={handleFavorite} className="favorite" style={{ color: "red" }} /> : <FavoriteTwoToneIcon onClick={handleFavorite} className="favorite" />}
