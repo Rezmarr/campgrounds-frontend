@@ -74,7 +74,7 @@ function CreateCampground() {
 
     mutation.mutate(requestBody);
 
-    // console.log(files)
+    console.log(files);
     // setInputs("")
     // setFiles(null)
   };
