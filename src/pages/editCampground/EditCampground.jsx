@@ -29,7 +29,7 @@ function EditCampground() {
     setInputs((currInputs) => ({ ...currInputs, [e.target.name]: e.target.value }));
   }
 
-    // const upload = async () => {
+  // const upload = async () => {
   //   try {
   //     const formData = new FormData();
   //     formData.append("files", files);
@@ -63,20 +63,23 @@ function EditCampground() {
     const latitude = geoData.body.features[0].geometry.coordinates[0];
     const longitude = geoData.body.features[0].geometry.coordinates[1];
 
-    mutation.mutate({
-      "title": inputs.title,
-      "latitude": latitude,
-      "longitude": longitude,
-      "price": inputs.price,
-      "description": inputs.description,
-      "location": inputs.location,
-      // "images": [
-      //   {
-      //     "url": "",
-      //     "filename": ""
-      //   }
-      // ]
-    })
+    const formData = new FormData();
+
+    // Agregar campos de texto al FormData
+    formData.append("Title", inputs.title);
+    formData.append("Latitude", latitude);
+    formData.append("Longitude", longitude);
+    formData.append("Price", inputs.price);
+    formData.append("Description", inputs.description);
+    formData.append("Location", inputs.location);
+    formData.append("ProvinceId", 1);
+
+    // Agregar imágenes al FormData
+    formData.append("Images", data.images);
+
+    const requestBody = formData;
+
+    mutation.mutate(requestBody);
     // setInputs("")
     // setFiles(null)
   };
