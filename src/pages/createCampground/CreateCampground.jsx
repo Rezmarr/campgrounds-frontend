@@ -39,8 +39,7 @@ function CreateCampground() {
     onSuccess: (res) => {
       //Invalidate and refetch
       queryClient.invalidateQueries(['campgrounds']);
-      console.log(res);
-      navigate("/");
+      navigate(`/${res.data.id}`);
     },
   })
 
