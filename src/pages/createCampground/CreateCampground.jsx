@@ -55,7 +55,7 @@ function CreateCampground() {
     const longitude = geoData.body.features[0].geometry.coordinates[1];
 
     const formData = new FormData();
-    formData.append("images", files);
+    formData.append("Images", files);
 
     mutation.mutate({
       "title": inputs.title,
