@@ -7,7 +7,7 @@ export const AuthContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
 
     const login = async (inputs) => {
-        const res = await axios.post("https://campground-api-ci-cd.azurewebsites.net/api/auth", inputs, {
+        const res = await axios.post("https://campground-api-final.azurewebsites.net/api/auth/login", inputs, {
             withCredentials: true
         });
 
