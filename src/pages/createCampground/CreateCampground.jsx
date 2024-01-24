@@ -45,8 +45,6 @@ function CreateCampground() {
 
   const handleClick = async e => {
     e.preventDefault();
-    // let imgUrls = [];
-    // if (files) imgUrls = await upload();
 
     const geoData = await geocoder.forwardGeocode({
       query: inputs.location,
@@ -59,10 +57,6 @@ function CreateCampground() {
     const formData = new FormData();
     formData.append("files", files);
 
-    // console.log("Latitud:", latitude);
-    // console.log("Longitud:", longitude);
-    // console.log(geoData)
-
     mutation.mutate({
       "title": inputs.title,
       "latitude": latitude,
@@ -70,13 +64,8 @@ function CreateCampground() {
       "price": inputs.price,
       "description": inputs.description,
       "location": inputs.location,
-      "images": formData
-      // "images": [
-      //   {
-      //     "url": "",
-      //     "filename": ""
-      //   }
-      // ]
+      "images": formData,
+      "provinceId": 1
     })
     // setInputs("")
     // setFiles(null)
