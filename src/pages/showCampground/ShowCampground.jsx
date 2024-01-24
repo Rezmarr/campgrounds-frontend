@@ -119,7 +119,7 @@ function ShowCampground() {
             <div className="details">
               {data.description}
             </div>
-            {data.host.id === currentUser.id ?
+            {currentUser && (data.host.id === currentUser.id) ?
               <div className="buttons">
                 <button className="update" onClick={() => navigate(`/edit/${id}`, { state: { data } })}>
                   Actualizar información
