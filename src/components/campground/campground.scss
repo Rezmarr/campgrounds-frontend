@@ -51,7 +51,7 @@
             }
 
             .navRight:hover, .navLeft:hover {
-                background-color: themed("border");
+                background-color: rgb(197, 197, 197);
                 transform: scale(1.05);
                 transition: 0.1s ease-in;
             }

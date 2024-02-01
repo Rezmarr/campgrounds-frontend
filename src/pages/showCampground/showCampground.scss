@@ -90,6 +90,42 @@
                     }
                 }
 
+                .slide {
+                    height: 100%;
+
+                    img {
+                        object-fit: cover;
+                    }
+                }
+
+                .navRight,
+                .navLeft {
+                    background-color: white;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 50%;
+                    z-index: 50;
+                    width: 30px;
+                    height: 30px;
+                    cursor: pointer;
+                }
+
+                .navRight {
+                    left: 95%;
+                    transition: 0.5s ease-out;
+                }
+
+                .navLeft {
+                    right: 95%;
+                }
+
+                .navRight:hover,
+                .navLeft:hover {
+                    background-color: rgb(197, 197, 197);
+                    transform: scale(1.05);
+                    transition: 0.1s ease-in;
+                }
+
                 img {
                     border-radius: 15px;
                     width: 100%;
@@ -206,24 +242,33 @@
                         }
                     }
                 }
+                
+            }
 
-                .mapContainer {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 20px;
-                    flex: 1;
+            hr {
+                border: none;
+                width: 100%;
+                background-color: themed("border");
+                height: 1px;
+            }
 
-                    .map {
-                        width: 100%;
-                        min-height: 600px;
-                        border: 1px solid themed("border");
-                        border-radius: 15px;
-                    }
+            .mapContainer {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+                color: themed("textColor");
 
-                    span {
-                        font-weight: 600;
-                        font-size: 18px;
-                    }
+                .map {
+                    width: 100%;
+                    min-height: 600px;
+                    border: 1px solid themed("border");
+                    border-radius: 15px;
+                }
+
+                span {
+                    font-weight: 600;
+                    font-size: 18px;
                 }
             }
         }

@@ -1,0 +1,269 @@
+@import "../../style.scss";
+
+.bookingForm {
+    @include themify($themes) {
+
+        .navbar {
+            border-bottom: 1px solid themed("border");
+            position: static;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 71px);
+
+            .wrapper {
+                position: absolute;
+                top: 71px;
+                width: 1100px;
+                border-top: none;
+                display: flex;
+                padding: 30px;
+                gap: 100px;
+                margin-top: 40px;
+
+                .left {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+
+                    .title {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        margin-bottom: 30px;
+
+                        .back {
+                            width: 15px;
+                            height: 15px;
+                            padding: 10px;
+                            border-radius: 50%;
+                            transition: 0.1s ease-out;
+                            cursor: pointer;
+                        }
+
+                        .back:hover {
+                            background-color: themed("border");
+                            transition: 0.1s ease-in;
+                        }
+                    }
+
+                    .details {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+
+                        .item {
+                            display: flex;
+                            flex-direction: column;
+                            line-height: 12px;
+                        }
+                    }
+
+                    hr {
+                        border: none;
+                        background-color: themed("border");
+                        width: 100%;
+                        height: 1px;
+                        margin-top: 30px;
+                    }
+
+                    .payment {
+
+                        .head {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+
+                            .logos {
+                                display: flex;
+                                gap: 15px;
+
+                                img {
+                                    width: 30px;
+                                    height: 30px;
+                                }
+                            }
+                        }
+
+                        .data {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 20px;
+
+                            .selectCard {
+                                display: flex;
+                                align-items: center;
+                                gap: 10px;
+                                border: 1px solid themed("border");
+                                border-radius: 10px;
+                                padding: 15px;
+                                color: themed("textColorsoft");
+                                cursor: pointer;
+                                justify-content: space-between;
+                                
+                            }
+
+                            .address {
+
+                                .item {
+                                    display: flex;
+                                    flex-direction: column;
+                                    border: 1px solid themed("border");
+                                    border-bottom: none;
+                                    padding: 8px;
+                                    gap: 5px;
+
+                                    label {
+                                        font-size: 13px;
+                                        color: themed("textColorsoft");
+                                    }
+
+                                    input {
+                                        border: none;
+                                        outline: none;
+                                        font-size: 16px;
+                                    }
+                                }
+
+                                .item:first-of-type {
+                                    border-radius: 10px 10px 0 0;
+                                }
+
+                                .items {
+                                    display: flex;
+                                    align-items: center;
+
+                                    .item {
+                                        border-radius: 0;
+                                        width: 100%;
+                                        border-bottom: 1px solid themed("border");
+
+                                        span {}
+
+                                        input {}
+                                    }
+
+                                    .item:first-of-type {
+                                        border-right: none;
+                                        border-radius: 0 0 0 10px;
+                                    }
+
+                                    .item:last-of-type {
+                                        border-radius: 0 0 10px 0;
+                                    }
+                                }
+                            }
+                        }
+
+                        .rules {
+
+                            ul {
+                                li {}
+                            }
+                        }
+                    }
+
+                    button {
+                        padding: 18px;
+                        border-radius: 8px;
+                        border: none;
+                        cursor: pointer;
+                        color: white;
+                        font-weight: 600;
+                        font-size: 18px;
+                        width: 180px;
+                        background-color: #ff3370;
+                        transition: 0.1s ease-out;
+                        margin-top: 10px;
+                    }
+
+                    button:hover {
+                        background-color: #b10035;
+                        transition: 0.1s ease-in;
+                    }
+                }
+
+                .right {
+                    flex: 0.8;
+                    height: 500px;
+                    margin-top: 97px;
+                    position: relative !important;
+                    height: inherit;
+
+                    .details {
+                        border: 1px solid themed("border");
+                        padding: 20px;
+                        border-radius: 10px;
+                        position: sticky !important;
+                        top: var(--navigation-bar-offset, 80px) !important;
+
+                        hr {
+                            border: none;
+                            background-color: themed("border");
+                            width: 100%;
+                            height: 1px;
+                            margin-top: 30px;
+                        }
+
+                        .header {
+                            display: flex;
+                            align-items: center;
+                            gap: 20px;
+
+                            img {
+                                width: 150px;
+                                height: 120px;
+                                border-radius: 10px;
+                                object-fit: cover;
+                            }
+
+                            .info {
+                                display: flex;
+                                flex-direction: column;
+
+                                .name {
+                                    font-weight: 600;
+                                }
+
+                                .location {
+                                    font-size: 14px;
+
+                                }
+                            }
+                        }
+
+                        .body {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+
+                            h2 {
+                                margin-bottom: 8px;
+                            }
+
+                            .price {
+                                display: flex;
+                                justify-content: space-between;
+
+                                span {}
+                            }
+                        }
+
+                        .footer {
+                            display: flex;
+                            justify-content: space-between;
+                            margin-top: 20px;
+
+                            span {
+                                font-weight: 700;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

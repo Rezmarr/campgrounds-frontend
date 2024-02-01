@@ -1,7 +1,7 @@
 import "./style.scss"
 
 import "./App.css"
-import { createBrowserRouter, Outlet, RouterProvider, Navigate, useParams } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider, Navigate, useParams, useLocation } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar"
 import Campgrounds from "./pages/campgrounds/Campgrounds"
 import ShowCampground from "./pages/showCampground/ShowCampground"
@@ -10,7 +10,10 @@ import CreateCampground from "./pages/createCampground/CreateCampground"
 import { useContext } from 'react';
 import { DarkModeContext } from './context/darkModeContext';
 import { AuthContext } from './context/authContext';
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import BookingForm from "./pages/bookingForm/BookingForm";
+import BookDetails from "./pages/bookDetails/BookDetails";
+import BookingList from "./pages/bookingList/BookingList";
 
 
 function App() {
@@ -44,7 +47,7 @@ function App() {
 
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
-      return <Navigate to="/login" />;
+      return <Navigate to="/" />;
     }
     return children;
   }
@@ -66,6 +69,29 @@ function App() {
     return children;
   }
 
+  const ProtectBooking = ({ children }) => {
+
+    const location = useLocation();
+    const { state } = location;
+
+    if (!state) {
+      return <Navigate to="/" />;
+    }
+    return children;
+  }
+
+  const ProtectDetails = ({ children }) => {
+
+    const { bookId } = useParams();
+    //Hacer get de reservas del usuario y verificar si el bookId pertenece a alguna
+
+    //Si no le pertenece
+    // if (!state) {
+    //   return <Navigate to="/" />;
+    // }
+    return children;
+  }
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -81,7 +107,11 @@ function App() {
         },
         {
           path: "/create",
-          element: <CreateCampground />
+          element: (
+            <ProtectedRoute>
+              <CreateCampground />
+            </ProtectedRoute>
+          )
         },
         {
           path: "/:id",
@@ -90,13 +120,49 @@ function App() {
         {
           path: "/edit/:id",
           element: (
-            <ProtectEdit>
-              <EditCampground />
-            </ProtectEdit>
+            <ProtectedRoute>
+              <ProtectEdit>
+                <EditCampground />
+              </ProtectEdit>
+            </ProtectedRoute>
           )
-        }
+        },
+        {
+          path: "/trips",
+          element: (
+            <ProtectedRoute>
+              <BookingList />
+            </ProtectedRoute>
+          )
+        },
       ]
-    }
+    },
+    {
+      path: "/:id/reserve",
+      element: (
+        <QueryClientProvider client={queryClient}>
+          <div className={`theme-light`}>
+            <ProtectedRoute>
+              <ProtectBooking>
+                <BookingForm />
+              </ProtectBooking>
+            </ProtectedRoute>
+          </div>
+        </QueryClientProvider>
+      )
+    },
+    {
+      path: "/trips/:bookId",
+      element: (
+        <QueryClientProvider client={queryClient}>
+          <div className={`theme-light`}>
+            <ProtectedRoute>
+              <BookDetails />
+            </ProtectedRoute>
+          </div>
+        </QueryClientProvider>
+      )
+    },
   ]);
 
   return (

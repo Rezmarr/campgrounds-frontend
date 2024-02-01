@@ -15,7 +15,7 @@ function Map({ campground }) {
             container: 'map', // container ID
             style: darkMode ? 'mapbox://styles/mapbox/navigation-night-v1' : 'mapbox://styles/mapbox/navigation-day-v1', // style URL
             center: [campground.latitude, campground.longitude],
-            zoom: 12, // starting zoom
+            zoom: 14, // starting zoom
         });
 
         map.addControl(new mapboxgl.NavigationControl());
@@ -36,6 +36,6 @@ function Map({ campground }) {
     }, [campground]);
 
     return <div id="map" className='map' />;
-};
+}
 
 export default Map;

@@ -24,6 +24,7 @@ function Navbar() {
   const [userOptionsOpen, setUserOptionsOpen] = useState(false);
   const [loginIsOpen, setLoginIsOpen] = useState(false);
   const [registerIsOpen, setRegisterIsOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -52,6 +53,18 @@ function Navbar() {
     };
   }, []);
 
+  // const { isLoading, error, data: notificationsData } = useQuery(['notifications'], () =>
+  //   makeRequest.get("/notifications").then(res => {
+  //     return res.data;
+  //   })
+  // )
+
+  const notificationsData = [
+    { id: 1, profilePic: "", name: "Renzo" },
+    { id: 2, profilePic: "", name: "Jhamil" },
+    { id: 3, profilePic: "", name: "Leonardo" },
+  ]
+
   return (
     <div className="navbar">
       <div className="left">
@@ -74,13 +87,32 @@ function Navbar() {
       </div>
 
       <div className="right">
+        {currentUser && <div className="icon" onClick={() => setNotificationsOpen(!notificationsOpen)}>
+          <NotificationsOutlinedIcon />
+          {notificationsData && notificationsData.length > 0 ? <span>{notificationsData.length}</span> : <></>}
+        </div>}
+        {notificationsOpen && notificationsData.length > 0 ?
+          <div className="notifications">
+            {notificationsData && notificationsData.map((noti) => (
+              <div key={noti.id} className="notification">
+                <div className="notiContainer">
+                  <img src={"/upload/" + noti.profilePic} alt="" />
+                  <span><span className="userEmisor">{noti.name}</span> Aquí va un mensaje</span>
+                </div>
+                <CancelIcon className="close" />
+              </div>
+            ))}
+          </div>
+          :
+          <></>
+        }
         {!currentUser ?
           <div className="icon" onClick={handleButtonClick}>
             <PersonOutlinedIcon />
           </div> :
           <div className="user">
             <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="" />
-            <span>{currentUser.firstName+" "+currentUser.lastName}</span>
+            <span>{currentUser.firstName + " " + currentUser.lastName}</span>
           </div>
         }
         {userOptionsOpen &&
@@ -90,8 +122,8 @@ function Navbar() {
           </div>
         }
       </div>
-      {registerIsOpen && <Register setRegisterIsOpen={setRegisterIsOpen}/>}
-      {loginIsOpen && <Login setLoginIsOpen={setLoginIsOpen}/>}
+      {registerIsOpen && <Register setRegisterIsOpen={setRegisterIsOpen} />}
+      {loginIsOpen && <Login setLoginIsOpen={setLoginIsOpen} />}
     </div>
   )
 }

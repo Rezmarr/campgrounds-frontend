@@ -10,6 +10,11 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { makeRequest, makeRequestPublic } from "../../axios";
 import Map from "../../components/map/Map";
 import { AuthContext } from "../../context/authContext";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import Book from "../../components/book/Book";
 
 function ShowCampground() {
 
@@ -28,6 +33,12 @@ function ShowCampground() {
   }
 
   const queryClient = useQueryClient();
+
+  const images = [
+    "https://res.cloudinary.com/ifeomaimoh/image/upload/v1652345767/demo_image2.jpg",
+    "https://res.cloudinary.com/ifeomaimoh/image/upload/v1652366604/demo_image5.jpg",
+    "https://res.cloudinary.com/ifeomaimoh/image/upload/v1652345874/demo_image1.jpg",
+  ];
 
   if (reviewsIsOpen) {
     document.body.classList.add('hide-scrollbar');
@@ -67,17 +78,17 @@ function ShowCampground() {
   // const data = {
   //   id: 1,
   //   title: "Camping Río Serpenteante",
-  //   price: 35,
+  //   price: 76,
   //   location: "Valle Pintoresco",
   //   description: "Acampa junto al río serpenteante y sumérgete en la belleza natural del valle.",
-  //   picture: "https://cdn.pixabay.com/photo/2021/01/04/10/45/tent-5887144_1280.jpg",
-  //   user: {
-  //     firstName: "John",
-  //     lastName: "Doe"
-  //   },
   //   latitude: "-77.1123622",
   //   longitude: "-12.0445345",
-  //   score: "0"
+  //   score: "0",
+  //   host: {
+  //     id: 1,
+  //     firstName: "Renzo",
+  //     lastName: "Zapata"
+  //   }
   // };
 
   return (
@@ -97,8 +108,27 @@ function ShowCampground() {
               </div>
             </div>
           </div>
-          <img src={data.images[0].url} alt="" />
-          {/* <img src="https://cdn.pixabay.com/photo/2016/01/26/23/32/camp-1163419_1280.jpg" alt="" /> */}
+          {/* <img src={data.images[0].url} alt="" /> */}
+          <Carousel showStatus={false} showThumbs={false} renderArrowNext={(clickHandler, hasNext) => {
+            return (
+              hasNext && (
+                <NavigateNextIcon className="navRight" onClick={clickHandler} />
+              )
+            );
+          }} renderArrowPrev={(clickHandler, hasNext) => {
+            return (
+              hasNext && (
+                <NavigateBeforeIcon className="navLeft" onClick={clickHandler} />
+              )
+            );
+          }}>
+            {
+              images.map((URL, index) => (
+                <div className="slide" key={index}>
+                  <img alt="sample_file" src={URL} />
+                </div>
+              ))}
+          </Carousel>
         </div>
         <div className="footer">
           <div className="information">
@@ -109,7 +139,7 @@ function ShowCampground() {
               </span>
               ·
               <span className="reviewsCount" onClick={() => setReviewsIsOpen(true)}>
-                {reviews ? reviews.length : "0"} reseñas
+                {/* {reviews ? reviews.length : "0"} reseñas */}
               </span>
             </div>
             <div className="owner">
@@ -130,13 +160,15 @@ function ShowCampground() {
               </div> : <></>
             }
           </div>
-          <div className="mapContainer">
-            <span>A dónde irás</span>
-            <Map campground={data} />
-            {/* <div className="map">
+          <Book data={data}/>
+        </div>
+        <hr />
+        <div className="mapContainer">
+          <span>A dónde irás</span>
+          <Map campground={data} />
+          {/* <div className="map">
               <h2>Mapa {data.latitude}, {data.longitud}</h2>
             </div> */}
-          </div>
         </div>
       </div>}
       {reviewsIsOpen && <Reviews score={data.score} campgroundId={id} reviews={reviews} setReviewsIsOpen={setReviewsIsOpen} />}

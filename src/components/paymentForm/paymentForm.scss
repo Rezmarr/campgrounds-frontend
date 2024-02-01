@@ -1,0 +1,63 @@
+@import "../../style.scss";
+
+.paymentForm {
+    @include themify($themes) {
+
+        form {
+            margin-top: 20px;
+
+            .item {
+                display: flex;
+                flex-direction: column;
+                border: 1px solid themed("border");
+                border-bottom: none;
+                padding: 8px;
+                gap: 5px;
+
+                label {
+                    font-size: 13px;
+                    color: themed("textColorsoft");
+                }
+
+                input {
+                    border: none;
+                    outline: none;
+                    font-size: 16px;
+                }
+
+                input[type="number"]::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+            }
+
+            .item:first-of-type {
+                border-radius: 10px 10px 0 0;
+            }
+
+            .items {
+                display: flex;
+                align-items: center;
+
+                .item {
+                    border-radius: 0;
+                    width: 100%;
+                    border-bottom: 1px solid themed("border");
+
+                    span {}
+
+                    input {}
+                }
+
+
+                .item:first-of-type {
+                    border-right: none;
+                    border-radius: 0 0 0 10px;
+                }
+
+                .item:last-of-type {
+                    border-radius: 0 0 10px 0;
+                }
+            }
+        }
+    }
+}
