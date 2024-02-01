@@ -31,7 +31,7 @@ function Login({ setLoginIsOpen }) {
     // );
 
     const googleLogin = useGoogleLogin({
-        onSuccess: async ({ code }) => {
+        onSuccess: async (credentials) => {
             // const tokens = await axios.post('http://localhost:3001/auth/google', {  // http://localhost:3001/auth/google backend that will exchange the code
             //     code,
             // });
@@ -39,9 +39,8 @@ function Login({ setLoginIsOpen }) {
             // const { tokens } = await oAuth2Client.getToken(code); // exchange code for tokens
             // console.log(tokens);
 
-            console.log(code);
-        },
-        flow: 'auth-code',
+            console.log(credentials);
+        }
     });
 
     return (

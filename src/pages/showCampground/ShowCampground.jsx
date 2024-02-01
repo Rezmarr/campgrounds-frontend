@@ -122,8 +122,14 @@ function ShowCampground() {
               )
             );
           }}>
-            {
-              (data.images.length > 0 ? data.images : images).map((URL, index) => (
+            {data.images.length > 0 ?
+              data.images.map((img, index) => (
+                <div className="slide" key={index}>
+                  <img alt="sample_file" src={img.url} />
+                </div>
+              ))
+              :
+              images.map((URL, index) => (
                 <div className="slide" key={index}>
                   <img alt="sample_file" src={URL} />
                 </div>

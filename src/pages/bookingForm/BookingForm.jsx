@@ -21,7 +21,7 @@ function ShowBooking() {
 
     const book = state && state.book;
 
-    console.log(book)
+    // console.log(book)
 
     useEffect(() => {
         moment().locale('es');

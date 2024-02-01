@@ -26,6 +26,8 @@ function Campground({ data }) {
         "https://res.cloudinary.com/ifeomaimoh/image/upload/v1652345874/demo_image1.jpg",
     ];
 
+    console.log(data.score)
+
     return (
         // onClick={() => navigate(`/${data.id}`)}
         <div className="campground">

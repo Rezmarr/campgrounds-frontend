@@ -44,7 +44,7 @@ function Book({ data }) {
         setFinalDate(e.value);
     }
 
-    console.log(days);
+    // console.log(days);
 
     return (
         <div className="book">
