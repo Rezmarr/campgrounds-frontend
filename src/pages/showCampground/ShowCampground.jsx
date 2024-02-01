@@ -123,7 +123,7 @@ function ShowCampground() {
             );
           }}>
             {
-              images.map((URL, index) => (
+              (data.images.length > 0 ? data.images : images).map((URL, index) => (
                 <div className="slide" key={index}>
                   <img alt="sample_file" src={URL} />
                 </div>
@@ -139,7 +139,7 @@ function ShowCampground() {
               </span>
               ·
               <span className="reviewsCount" onClick={() => setReviewsIsOpen(true)}>
-                {/* {reviews ? reviews.length : "0"} reseñas */}
+                {reviews && (reviews ? reviews.length : "0")} reseñas
               </span>
             </div>
             <div className="owner">
@@ -160,7 +160,7 @@ function ShowCampground() {
               </div> : <></>
             }
           </div>
-          <Book data={data}/>
+          <Book data={data} />
         </div>
         <hr />
         <div className="mapContainer">
