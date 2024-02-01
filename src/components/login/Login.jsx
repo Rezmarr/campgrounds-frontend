@@ -10,7 +10,7 @@ function Login({ setLoginIsOpen }) {
 
     const [inputs, setInputs] = useState({ username: "", password: "" });
 
-    const { login } = useContext(AuthContext);
+    const { login, setCurrentUser } = useContext(AuthContext);
 
     const handleChange = (e) => {
         setInputs(currInputs => ({ ...currInputs, [e.target.name]: e.target.value }));
@@ -40,11 +40,12 @@ function Login({ setLoginIsOpen }) {
             // const { tokens } = await oAuth2Client.getToken(code); // exchange code for tokens
             // console.log(tokens);
 
-            makeRequestPublic.post(`/auth/google?accessToken=credentials.access_token`).then(res => {
+            makeRequestPublic.post(`/auth/google?accessToken=${credentials.access_token}`).then(res => {
                 console.log(res.data);
-            })
+                setCurrentUser(res.data);
+            });
 
-            // console.log("Ok");
+            // console.log(credentials.access_token);
         }
     });
 
