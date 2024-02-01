@@ -40,7 +40,7 @@ function Login({ setLoginIsOpen }) {
             // const { tokens } = await oAuth2Client.getToken(code); // exchange code for tokens
             // console.log(tokens);
 
-            makeRequestPublic.get(`/auth/google?accessToken=credentials.access_token`).then(res => {
+            makeRequestPublic.post(`/auth/google?accessToken=credentials.access_token`).then(res => {
                 console.log(res.data);
             })
 
