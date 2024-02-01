@@ -3,6 +3,7 @@ import "./login.scss";
 import CloseIcon from '@mui/icons-material/Close';
 import { useGoogleLogin } from "@react-oauth/google";
 import { AuthContext } from "../../context/authContext";
+import { makeRequestPublic } from "../../axios";
 // import { OAuth2Client } from "google-auth-library";
 
 function Login({ setLoginIsOpen }) {
@@ -39,7 +40,11 @@ function Login({ setLoginIsOpen }) {
             // const { tokens } = await oAuth2Client.getToken(code); // exchange code for tokens
             // console.log(tokens);
 
-            console.log(credentials);
+            makeRequestPublic.get(`/auth/google`, credentials.access_token).then(res => {
+                console.log(res.data);
+            })
+
+            // console.log("Ok");
         }
     });
 
