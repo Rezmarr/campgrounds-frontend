@@ -4,12 +4,13 @@ import axios from "axios";
 import CloseIcon from '@mui/icons-material/Close';
 import { useGoogleLogin } from "@react-oauth/google";
 import { AuthContext } from "../../context/authContext";
+import { makeRequestPublic } from "../../axios";
 
 function Register({ setRegisterIsOpen }) {
 
     const [inputs, setInputs] = useState({ email: "", password: "", username: "", firstName: "", lastName: "" });
 
-    const { login } = useContext(AuthContext);
+    const { login, setCurrentUser } = useContext(AuthContext);
 
     const handleChange = (e) => {
         setInputs(currInputs => ({ ...currInputs, [e.target.name]: e.target.value }));
@@ -30,7 +31,12 @@ function Register({ setRegisterIsOpen }) {
     }
 
     const googleLogin = useGoogleLogin({
-        onSuccess: (tokenResponse) => console.log(tokenResponse)
+        onSuccess: async (credentials) => {
+            makeRequestPublic.post(`/auth/google?accessToken=${credentials.access_token}`).then(res => {
+                console.log(res.data);
+                setCurrentUser(res.data);
+            });
+        }
     });
 
     return (

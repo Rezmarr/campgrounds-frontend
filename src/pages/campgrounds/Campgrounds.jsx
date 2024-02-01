@@ -2,6 +2,7 @@ import Campground from "../../components/campground/Campground";
 import "./campgrounds.scss";
 import { makeRequestPublic } from "../../axios.js";
 import { useQuery } from "react-query";
+import Skeleton from '@mui/material/Skeleton';
 
 function Campgrounds() {
 
@@ -100,6 +101,110 @@ function Campgrounds() {
                 {campgrounds && campgrounds.map(campground => (
                     <Campground key={campground.id} data={campground} />
                 ))}
+                {isLoading &&
+                    <>
+                        <div className="campground" style={{ gap: 0 }}>
+                            <div className="body">
+                                <Skeleton variant="rounded" width={'100%'} height={250} />
+                            </div>
+                            <div className="footer" style={{ gap: 0, lineHeight: 1 }}>
+                                <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={'200px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'150px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'180px'} />
+                            </div>
+                        </div>
+                        <div className="campground" style={{ gap: 0 }}>
+                            <div className="body">
+                                <Skeleton variant="rounded" width={'100%'} height={250} />
+                            </div>
+                            <div className="footer" style={{ gap: 0, lineHeight: 1 }}>
+                                <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={'200px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'150px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'180px'} />
+                            </div>
+                        </div>
+                        <div className="campground" style={{ gap: 0 }}>
+                            <div className="body">
+                                <Skeleton variant="rounded" width={'100%'} height={250} />
+                            </div>
+                            <div className="footer" style={{ gap: 0, lineHeight: 1 }}>
+                                <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={'200px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'150px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'180px'} />
+                            </div>
+                        </div>
+                        <div className="campground" style={{ gap: 0 }}>
+                            <div className="body">
+                                <Skeleton variant="rounded" width={'100%'} height={250} />
+                            </div>
+                            <div className="footer" style={{ gap: 0, lineHeight: 1 }}>
+                                <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={'200px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'150px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'180px'} />
+                            </div>
+                        </div>
+                        <div className="campground" style={{ gap: 0 }}>
+                            <div className="body">
+                                <Skeleton variant="rounded" width={'100%'} height={250} />
+                            </div>
+                            <div className="footer" style={{ gap: 0, lineHeight: 1 }}>
+                                <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={'200px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'150px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'180px'} />
+                            </div>
+                        </div>
+                        <div className="campground" style={{ gap: 0 }}>
+                            <div className="body">
+                                <Skeleton variant="rounded" width={'100%'} height={250} />
+                            </div>
+                            <div className="footer" style={{ gap: 0, lineHeight: 1 }}>
+                                <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={'200px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'150px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'180px'} />
+                            </div>
+                        </div>
+                        <div className="campground" style={{ gap: 0 }}>
+                            <div className="body">
+                                <Skeleton variant="rounded" width={'100%'} height={250} />
+                            </div>
+                            <div className="footer" style={{ gap: 0, lineHeight: 1 }}>
+                                <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={'200px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'150px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'180px'} />
+                            </div>
+                        </div>
+                        <div className="campground" style={{ gap: 0 }}>
+                            <div className="body">
+                                <Skeleton variant="rounded" width={'100%'} height={250} />
+                            </div>
+                            <div className="footer" style={{ gap: 0, lineHeight: 1 }}>
+                                <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={'200px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'150px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'180px'} />
+                            </div>
+                        </div>
+                        <div className="campground" style={{ gap: 0 }}>
+                            <div className="body">
+                                <Skeleton variant="rounded" width={'100%'} height={250} />
+                            </div>
+                            <div className="footer" style={{ gap: 0, lineHeight: 1 }}>
+                                <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={'200px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'150px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'180px'} />
+                            </div>
+                        </div>
+                        <div className="campground" style={{ gap: 0 }}>
+                            <div className="body">
+                                <Skeleton variant="rounded" width={'100%'} height={250} />
+                            </div>
+                            <div className="footer" style={{ gap: 0, lineHeight: 1 }}>
+                                <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={'200px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'150px'} />
+                                <Skeleton variant="text" sx={{ fontSize: '1.8rem' }} width={'180px'} />
+                            </div>
+                        </div>
+                    </>
+                }
             </div>
         </div>
     )
