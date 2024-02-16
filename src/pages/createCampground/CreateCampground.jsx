@@ -22,17 +22,6 @@ function CreateCampground() {
     setInputs((currInputs) => ({ ...currInputs, [e.target.name]: e.target.value }));
   }
 
-  // const upload = async () => {
-  //   try {
-  //     const formData = new FormData();
-  //     formData.append("files", files);
-  //     const res = await makeRequest.post("/upload", formData);
-  //     return res.data;
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
   const mutation = useMutation((newCampground) => {
     return makeRequest.post("/campground", newCampground);
   }, {
@@ -56,7 +45,6 @@ function CreateCampground() {
 
     const formData = new FormData();
 
-    // Agregar campos de texto al FormData
     formData.append("Title", inputs.title);
     formData.append("Latitude", latitude);
     formData.append("Longitude", longitude);
@@ -65,7 +53,6 @@ function CreateCampground() {
     formData.append("Location", inputs.location);
     formData.append("ProvinceId", 1);
 
-    // Agregar imágenes al FormData
     for (const file of files) {
       formData.append("Images", file);
     }
@@ -73,10 +60,6 @@ function CreateCampground() {
     const requestBody = formData;
 
     mutation.mutate(requestBody);
-
-    // console.log(files);
-    // setInputs("")
-    // setFiles(null)
   };
 
   return (
