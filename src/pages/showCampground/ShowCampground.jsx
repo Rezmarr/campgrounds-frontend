@@ -47,13 +47,13 @@ function ShowCampground() {
   }
 
   const { isLoading, error, data } = useQuery(['campground', id], () =>
-    makeRequestPublic.get(`/campground/${id}`).then(res => {
+    makeRequestPublic.get(`/camp-read/campgrounds/${id}`).then(res => {
       return res.data;
     })
   )
 
   const { isLoading: reviewsIsLoading, error: reviewsError, data: reviews } = useQuery(['reviews', id], () =>
-    makeRequestPublic.get(`/campground/${id}/reviews`).then(res => {
+    makeRequestPublic.get(`/camp-read/reviews/${id}`).then(res => {
       return res.data;
     })
   )

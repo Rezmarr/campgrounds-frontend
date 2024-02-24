@@ -94,8 +94,8 @@
                 background-color: themed("bg");
                 border-radius: 10px;
                 position: absolute;
-                top: 100%;
-                right: 100px;
+                top: 65px;
+                right: 150px;
                 padding: 10px;
                 display: flex;
                 flex-direction: column;
@@ -144,7 +144,7 @@
                     .close {
                         position: absolute;
                         right: 20px;
-                        z-index: 2000;
+                        z-index: 100;
                     }
 
                     .close:hover {

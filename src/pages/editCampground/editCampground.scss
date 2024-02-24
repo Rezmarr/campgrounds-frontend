@@ -123,16 +123,12 @@
             .gallery {
                 display: flex;
                 width: 100%;
-                overflow-x: scroll;
                 gap: 30px;
+                flex-wrap: wrap;
 
-                @include mobile {
-                    width: 300px;
-                }
-
-                &::-webkit-scrollbar {
-                    display: none;
-                }
+                // @include mobile {
+                //     width: 300px;
+                // }
 
                 img {
                     width: 200px;

@@ -2,11 +2,8 @@ import "./navbar.scss"
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
-import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -16,33 +13,71 @@ import { makeRequest } from "../../axios";
 import { useQuery } from "react-query";
 import Register from "../register/Register";
 import Login from "../login/Login";
+import {HubConnectionBuilder} from "@microsoft/signalr"
 
 function Navbar() {
 
   const { currentUser } = useContext(AuthContext);
   const { toggle, darkMode } = useContext(DarkModeContext);
   const [userOptionsOpen, setUserOptionsOpen] = useState(false);
+  const [userMoreOpen, setUserMoreOpen] = useState(false);
   const [loginIsOpen, setLoginIsOpen] = useState(false);
   const [registerIsOpen, setRegisterIsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+
+  const [connection, setConnection] = useState(null);
+
+  useEffect(() => {
+    const newConnection = new HubConnectionBuilder()
+      .withUrl('http://kr6nmcwc-8080.brs.devtunnels.ms/api/socket') // reemplaza con tu URL
+      .withAutomaticReconnect()
+      .build();
+
+    setConnection(newConnection);
+  }, []);
+
+  useEffect(() => {
+    if (connection) {
+      connection.start()
+        .then(result => {
+          console.log('Conectado!');
+
+          // Aquí te suscribes a los mensajes
+          connection.on('notification', (bookingId) => {
+            console.log('Recibido un mensaje: ', bookingId);
+            // Aquí puedes añadir el código para procesar el mensaje
+          });
+        })
+        .catch(e => console.log('Falló la conexión: ', e));
+    }
+  }, [connection]);
 
   const navigate = useNavigate();
 
   const path = window.location.pathname;
 
-  const userIsNotLogged = true;
+  // const userIsNotLogged = true;
 
   const optionsRef = useRef(null);
+  const optionsMoreRef = useRef(null);
 
   const handleButtonClick = (e) => {
     e.stopPropagation();
     setUserOptionsOpen(!userOptionsOpen);
   };
 
+  const handleMoreOptionsClick = (e) => {
+    e.stopPropagation();
+    setUserMoreOpen(!userMoreOpen);
+  };
+
   useEffect(() => {
     const handleClickOutside = () => {
       if (optionsRef.current) {
         setUserOptionsOpen(false);
+      }
+      if (optionsMoreRef.current) {
+        setUserMoreOpen(false);
       }
     };
 
@@ -110,7 +145,7 @@ function Navbar() {
           <div className="icon" onClick={handleButtonClick}>
             <PersonOutlinedIcon />
           </div> :
-          <div className="user">
+          <div className="user" onClick={handleMoreOptionsClick}>
             <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="" />
             <span>{currentUser.firstName + " " + currentUser.lastName}</span>
           </div>
@@ -119,6 +154,13 @@ function Navbar() {
           <div className="userOptions" ref={optionsRef}>
             <span onClick={() => setLoginIsOpen(true)}>Iniciar sesión</span>
             <span onClick={() => setRegisterIsOpen(true)}>Registrarse</span>
+          </div>
+        }
+        {userMoreOpen &&
+          <div className="userOptions" ref={optionsMoreRef}>
+            <span>Perfil</span>
+            <span>Métricas</span>
+            <span>Cerrar sesión</span>
           </div>
         }
       </div>

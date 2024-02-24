@@ -90,7 +90,7 @@ function Campgrounds() {
     // ];
 
     const { isLoading, error, data: campgrounds } = useQuery(['campgrounds'], () =>
-        makeRequestPublic.get("/campground").then(res => {
+        makeRequestPublic.get("/camp-read/campgrounds").then(res => {
             return res.data;
         })
     )
