@@ -24,8 +24,8 @@ function ShowBooking() {
 
     const [formData, setFormData] = useState({
         campgroundId: book.id,
-        arrivingDate: moment(book.initialDate).format('YYYY-MM-dd'),
-        leavingDate: moment(book.finalDate).format('YYYY-MM-dd'),
+        arrivingDate: moment(book.initialDate).format("dd/MM/yyyy"),
+        leavingDate: moment(book.finalDate).format("dd/MM/yyyy"),
         numNights: moment(book.finalDate).diff(moment(book.initialDate), 'days') + 1,
         pricePerNight: book.price
     });
@@ -51,9 +51,10 @@ function ShowBooking() {
     const fin = moment(book.finalDate);
 
     const handleSubmit = () => {
-        setPayIsOpen(true);
+        // setPayIsOpen(true);
         makeRequest.post(`/booking`, formData).then(res => {
             console.log(res.data);
+            return setPayIsOpen(true);
         });
         //Obtener id de la reserva creada y reemplazar
         setBookId(1);
