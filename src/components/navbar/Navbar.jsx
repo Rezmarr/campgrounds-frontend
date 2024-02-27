@@ -154,7 +154,7 @@ function Navbar() {
               <div key={noti.id} className="notification">
                 <div className="notiContainer">
                   <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="usuario" />
-                  <span>noti.message</span>
+                  <span>{noti.message}</span>
                 </div>
                 <CancelIcon className="close" />
               </div>
