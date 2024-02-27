@@ -42,7 +42,7 @@ function Navbar() {
   useEffect(() => {
     if (connection) {
       connection.start()
-        .then(result => {
+        .then(() => {
           console.log('Conectado!');
 
           // Aquí te suscribes a los mensajes
@@ -64,8 +64,6 @@ function Navbar() {
   const navigate = useNavigate();
 
   const path = window.location.pathname;
-
-  // const userIsNotLogged = true;
 
   const optionsRef = useRef(null);
   const optionsMoreRef = useRef(null);
@@ -97,12 +95,6 @@ function Navbar() {
     };
   }, []);
 
-  // const { isLoading, error, data: notificationsData } = useQuery(['notifications'], () =>
-  //   makeRequest.get("/notifications").then(res => {
-  //     return res.data;
-  //   })
-  // )
-
   const handleLogout = () => {
     makeRequest.post("/auth/signout").then(res => {
       return res.data;
@@ -110,9 +102,10 @@ function Navbar() {
   }
 
   // const notificationsData = [
-  //   { id: 1, profilePic: "", name: "Renzo" },
-  //   { id: 2, profilePic: "", name: "Jhamil" },
-  //   { id: 3, profilePic: "", name: "Leonardo" },
+  //   { id: 1, profilePic: "", message: "Renzo" },
+  //   { id: 2, profilePic: "", message: "Jhamil" },
+  //   { id: 3, profilePic: "", message: "Leonardo" },
+  //   { id: 4, profilePic: "", message: "Gianmarco" },
   // ]
 
   const handleNotifications = () => {
@@ -120,7 +113,13 @@ function Navbar() {
       setNotificationsData(res.data);
     })
     setNotificationsOpen(!notificationsOpen);
-    setNewNoti(true);
+    setNewNoti(false);
+  }
+
+  const handleClear = () => {
+    makeRequest.delete(`/notification/`).then(res => {
+      return res.data;
+    })
   }
 
   return (
@@ -151,13 +150,15 @@ function Navbar() {
         </div>}
         {notificationsOpen && notificationsData && notificationsData.length > 0 ?
           <div className="notifications">
+            <span className="clear" onClick={handleClear}>Clear all</span>
+            <hr />
             {notificationsData && notificationsData.map((noti) => (
               <div key={noti.id} className="notification">
                 <div className="notiContainer">
                   <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="usuario" />
                   <span>{noti.message}</span>
                 </div>
-                <CancelIcon className="close" />
+                {/* <CancelIcon className="close" /> */}
               </div>
             ))}
           </div>
