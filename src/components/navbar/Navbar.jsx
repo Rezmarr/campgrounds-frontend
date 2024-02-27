@@ -13,7 +13,7 @@ import { makeRequest } from "../../axios";
 import { useQuery } from "react-query";
 import Register from "../register/Register";
 import Login from "../login/Login";
-import {HubConnectionBuilder} from "@microsoft/signalr"
+import { HubConnectionBuilder } from "@microsoft/signalr"
 
 function Navbar() {
 
@@ -25,32 +25,32 @@ function Navbar() {
   const [registerIsOpen, setRegisterIsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
-  // const [connection, setConnection] = useState(null);
+  const [connection, setConnection] = useState(null);
 
-  // useEffect(() => {
-  //   const newConnection = new HubConnectionBuilder()
-  //     .withUrl('https://4l17td47-5000.brs.devtunnels.ms/api/socket') // reemplaza con tu URL
-  //     .withAutomaticReconnect()
-  //     .build();
+  useEffect(() => {
+    const newConnection = new HubConnectionBuilder()
+      .withUrl('https://4l17td47-5000.brs.devtunnels.ms/notifications') // reemplaza con tu URL
+      .withAutomaticReconnect()
+      .build();
 
-  //   setConnection(newConnection);
-  // }, []);
+    setConnection(newConnection);
+  }, []);
 
-  // useEffect(() => {
-  //   if (connection) {
-  //     connection.start()
-  //       .then(result => {
-  //         console.log('Conectado!');
+  useEffect(() => {
+    if (connection) {
+      connection.start()
+        .then(result => {
+          console.log('Conectado!');
 
-  //         // Aquí te suscribes a los mensajes
-  //         connection.on('notification', (bookingId) => {
-  //           console.log('Recibido un mensaje: ', bookingId);
-  //           // Aquí puedes añadir el código para procesar el mensaje
-  //         });
-  //       })
-  //       .catch(e => console.log('Falló la conexión: ', e));
-  //   }
-  // }, [connection]);
+          // Aquí te suscribes a los mensajes
+          connection.on('notification', (bookingId) => {
+            console.log('Recibido un mensaje: ', bookingId);
+            // Aquí puedes añadir el código para procesar el mensaje
+          });
+        })
+        .catch(e => console.log('Falló la conexión: ', e));
+    }
+  }, [connection]);
 
   const navigate = useNavigate();
 
@@ -93,6 +93,12 @@ function Navbar() {
   //     return res.data;
   //   })
   // )
+
+  const handleLogout = () => {
+    makeRequest.post("/auth/signout").then(res => {
+      return res.data;
+    })
+  }
 
   const notificationsData = [
     { id: 1, profilePic: "", name: "Renzo" },
@@ -160,7 +166,7 @@ function Navbar() {
           <div className="userOptions" ref={optionsMoreRef}>
             <span>Perfil</span>
             <span>Métricas</span>
-            <span>Cerrar sesión</span>
+            <span onClick={handleLogout}>Cerrar sesión</span>
           </div>
         }
       </div>
