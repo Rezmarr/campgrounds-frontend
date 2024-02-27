@@ -98,7 +98,6 @@ function Campgrounds() {
     return (
         <div className="campgrounds">
             <div className="container">
-            <iframe title="DashboardFisiCamp" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=335184c1-0c9e-409b-ab6c-04b75cd9cf59&autoAuth=true&ctid=717b9a79-1b91-41ab-a6f7-a579b46a9b41" frameborder="0" allowFullScreen="true"></iframe>
                 {campgrounds && campgrounds.map(campground => (
                     <Campground key={campground.id} data={campground} />
                 ))}

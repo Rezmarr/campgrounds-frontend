@@ -11,7 +11,6 @@ function BookingList() {
     useEffect(() => {
         makeRequest.get("/booking").then(res => {
             setTrips(res.data);
-            console.log(res.data);
         })
     }, [])
 
@@ -20,6 +19,32 @@ function BookingList() {
             <div className="container">
                 <h1 className="title">Viajes</h1>
                 <div className="trips">
+                    {trips && trips.map(trip => (
+                        <div className="trip" onClick={() => navigate(`/trips/${trip.id}`)}>
+                            <div className="left">
+                                <div className="top">
+                                    <h1>{trip.campground.title}</h1>
+                                    <span>Host: {trip.campground.host.firstName} {trip.campground.host.lastName}</span>
+                                </div>
+                                <div className="bottom">
+                                    <div className="dates">
+                                        <h2>{moment(trip.arrivingDate).format('DD mmm')} - {moment(trip.leavingDate).format('DD mmm')}</h2>
+                                        <span>{moment(trip.leavingDate).format('YYYY')}</span>
+                                    </div>
+                                    <hr />
+                                    <div className="location">
+                                        <h2>{trip.location}</h2>
+                                        {/* <span>Location</span> */}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="right">
+                                <img src={trip.campground.images[0].url} alt="" />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                {/* <div className="trips">
                     <div className="trip" onClick={() => navigate(`/trips/1`)}>
                         <div className="left">
                             <div className="top">
@@ -41,8 +66,8 @@ function BookingList() {
                         <div className="right">
                             <img src="https://images.surferseo.art/d6444d0b-49d0-473c-b839-34d6679f1bab.jpeg" alt="" />
                         </div>
-                    </div>
-                    <div className="trip">
+                    </div> */}
+                {/* <div className="trip">
                         <div className="left">
                             <div className="top">
                                 <h1>Titulo del Campamento</h1>
@@ -129,8 +154,7 @@ function BookingList() {
                         <div className="right">
                             <img src="https://images.surferseo.art/d6444d0b-49d0-473c-b839-34d6679f1bab.jpeg" alt="" />
                         </div>
-                    </div>
-                </div>
+                    </div> */}
             </div>
         </div>
     )

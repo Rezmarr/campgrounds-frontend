@@ -1,10 +1,22 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./bookDetails.scss";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { useEffect, useState } from "react";
+import { makeRequest } from "../../axios";
+import moment from 'moment';
 
 function BookDetails() {
 
     const navigate = useNavigate();
+    const { id } = useParams();
+
+    const [bookDetails, setBookDetails] = useState(null);
+
+    useEffect(() => {
+        makeRequest.get(`/booking/${id}`).then(res => {
+            setBookDetails(res.data);
+        })
+    }, [id])
 
     return (
         <div className='bookDetails'>
@@ -17,17 +29,17 @@ function BookDetails() {
             </div>
             <div className="container">
                 <div className="back">
-                    <button onClick={() => navigate("/trips")}><ArrowBackIosNewIcon className="arrow"/>Regresar a todas las reservas</button>
+                    <button onClick={() => navigate("/trips")}><ArrowBackIosNewIcon className="arrow" />Regresar a todas las reservas</button>
                 </div>
                 <div className="wrapper">
                     <div className="left">
                         <h2>Tu reserva está confirmada</h2>
-                        <h4>Tienes una reserva en Location!</h4>
+                        <h4>Tienes una reserva en {bookDetails.location}!</h4>
                         <img src="" alt="" />
                         <div className="place">
                             <div className="text">
-                                <h4>Título del campamento</h4>
-                                <span>Estadía de Leanne</span>
+                                <h4>{bookDetails.title}</h4>
+                                <span>Estadía de {bookDetails.host.firstName} {bookDetails.host.lastName}</span>
                             </div>
                             <img src="" alt="" />
                         </div>
@@ -36,21 +48,21 @@ function BookDetails() {
                     <div className="right">
                         <div className="date">
                             <div className="checkIn">
-                                <h4>Friday, June 14, 2024</h4>
-                                <span>Check-in time is 4PM - 9PM</span>
+                                <h4>{moment(bookDetails.initialDate).format('ddd, mmm DD, YYYY')}</h4>
+                                <span>Check-in time is 8AM - 5PM</span>
                             </div>
                             <div className="checkOut">
-                                <h4>Saturday, June 15, 2024</h4>
+                                <h4>{moment(bookDetails.finalDate).format('ddd, mmm DD, YYYY')}</h4>
                                 <span>Check-out 11AM</span>
                             </div>
                         </div>
                         <div className="item">
                             <span className="name">Dirección</span>
-                            <span className="address">123 Main Street, San Francisco, CA 94105, United States</span>
+                            <span className="address">{bookDetails.location}</span>
                         </div>
                         <div className="item">
                             <span className="name">Conoce a tu host</span>
-                            <span className="itemText">Contacta a Leanne para coordinar la llegada y la entrega de llaves: <span>+1 (123) 456-7890</span></span>
+                            <span className="itemText">Contacta a Leanne para coordinar la llegada y la entrega de llaves: <span>{bookDetails.host.email}</span></span>
                         </div>
                         <div className="rules">
                             <div className="info">
@@ -62,19 +74,19 @@ function BookDetails() {
                         <div className="item">
                             <div className="body">
                                 <h3>Información del pago</h3>
-                                <div className="price">
+                                {/* <div className="price">
                                     <span>S/76 x 1 noches</span>
                                     <span>S/76</span>
                                 </div>
                                 <div className="price">
                                     <span>Tarifa por servicio</span>
                                     <span>S/39</span>
-                                </div>
+                                </div> */}
                             </div>
                             <hr />
                             <div className="footer">
                                 <span>Total (PEN)</span>
-                                <span>S/115</span>
+                                <span>S/{bookDetails.price}</span>
                             </div>
                         </div>
                     </div>

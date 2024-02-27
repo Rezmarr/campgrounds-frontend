@@ -14,6 +14,7 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import BookingForm from "./pages/bookingForm/BookingForm";
 import BookDetails from "./pages/bookDetails/BookDetails";
 import BookingList from "./pages/bookingList/BookingList";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 
 function App() {
@@ -161,6 +162,18 @@ function App() {
             </ProtectedRoute>
           </div>
         </QueryClientProvider>
+      )
+    },
+    {
+      path: "/metrics",
+      element: (
+        <QueryClientProvider client={queryClient}>
+          <div className={`theme-light`}>
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          </div>
+        </QueryClientProvider >
       )
     },
   ]);
