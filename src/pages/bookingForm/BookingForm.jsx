@@ -24,8 +24,8 @@ function ShowBooking() {
 
     const [formData, setFormData] = useState({
         campgroundId: book.id,
-        arrivingDate: moment(book.initialDate).format("DD/MM/yyyy"),
-        leavingDate: moment(book.finalDate).format("DD/MM/yyyy"),
+        arrivingDate: moment(book.initialDate).format('YYYY/MM/DD'),
+        leavingDate: moment(book.finalDate).format('YYYY/MM/DD'),
         numNights: moment(book.finalDate).diff(moment(book.initialDate), 'days') + 1,
         pricePerNight: book.price
     });
