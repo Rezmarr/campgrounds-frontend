@@ -8,6 +8,7 @@ import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
 import PaymentForm from "../../components/paymentForm/PaymentForm";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Backdrop from "../../components/backdrop/Backdrop";
+import { makeRequest } from "../../axios";
 
 function ShowBooking() {
 
@@ -23,10 +24,10 @@ function ShowBooking() {
 
     const [formData, setFormData] = useState({
         campgroundId: book.id,
-        arrivingDate: "",
-        leavingDate: "",
-        numNights: "",
-        pricePerNight: ""
+        arrivingDate: book.initialDate.format('YYYY/MM/dd'),
+        leavingDate: book.finalDate.format('YYYY/MM/dd'),
+        numNights: book.finalDate.diff(book.initialDate, 'days') + 1,
+        pricePerNight: book.price
     });
 
     console.log(book)
@@ -51,6 +52,9 @@ function ShowBooking() {
 
     const handleSubmit = () => {
         setPayIsOpen(true);
+        makeRequest.post(`/booking`, formData).then(res => {
+            console.log(res.data);
+        });
         //Obtener id de la reserva creada y reemplazar
         setBookId(1);
     }
