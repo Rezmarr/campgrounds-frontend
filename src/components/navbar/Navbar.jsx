@@ -120,6 +120,7 @@ function Navbar() {
       setNotificationsData(res.data);
     })
     setNotificationsOpen(!notificationsOpen);
+    setNewNoti(true);
   }
 
   return (
