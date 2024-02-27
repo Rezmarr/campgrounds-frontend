@@ -53,11 +53,11 @@ function ShowBooking() {
     const handleSubmit = () => {
         // setPayIsOpen(true);
         makeRequest.post(`/booking`, formData).then(res => {
-            console.log(res.data);
+            //Obtener id de la reserva creada y reemplazar
+            setBookId(res.data.id);
             return setPayIsOpen(true);
         });
-        //Obtener id de la reserva creada y reemplazar
-        setBookId(1);
+
     }
 
     return (
