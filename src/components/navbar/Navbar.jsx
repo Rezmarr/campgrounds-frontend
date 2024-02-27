@@ -27,6 +27,8 @@ function Navbar() {
 
   const [connection, setConnection] = useState(null);
 
+  const [newNoti, setNewNoti] = useState(false);
+
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
       .withUrl('https://4l17td47-5000.brs.devtunnels.ms/notifications') // reemplaza con tu URL
@@ -41,17 +43,15 @@ function Navbar() {
       connection.start()
         .then(result => {
           console.log('Conectado!');
-          console.log(result);
 
           // Aquí te suscribes a los mensajes
           connection.on('notification', (message) => {
             const notification = JSON.parse(message);
 
-            console.log(message);
-
             // Asegúrate de que el ID del usuario en la notificación coincide con el ID del usuario en el cliente
             if (notification.userId == currentUser.id) {
               console.log(notification);
+              setNewNoti(true);
               // Aquí puedes manejar la notificación
             }
           });
@@ -108,11 +108,11 @@ function Navbar() {
     })
   }
 
-  const notificationsData = [
-    { id: 1, profilePic: "", name: "Renzo" },
-    { id: 2, profilePic: "", name: "Jhamil" },
-    { id: 3, profilePic: "", name: "Leonardo" },
-  ]
+  // const notificationsData = [
+  //   { id: 1, profilePic: "", name: "Renzo" },
+  //   { id: 2, profilePic: "", name: "Jhamil" },
+  //   { id: 3, profilePic: "", name: "Leonardo" },
+  // ]
 
   return (
     <div className="navbar">
@@ -138,9 +138,9 @@ function Navbar() {
       <div className="right">
         {currentUser && <div className="icon" onClick={() => setNotificationsOpen(!notificationsOpen)}>
           <NotificationsOutlinedIcon />
-          {notificationsData && notificationsData.length > 0 ? <span>{notificationsData.length}</span> : <></>}
+          {newNoti && <span> </span>}
         </div>}
-        {notificationsOpen && notificationsData.length > 0 ?
+        {/* {notificationsOpen && notificationsData.length > 0 ?
           <div className="notifications">
             {notificationsData && notificationsData.map((noti) => (
               <div key={noti.id} className="notification">
@@ -154,7 +154,7 @@ function Navbar() {
           </div>
           :
           <></>
-        }
+        } */}
         {!currentUser ?
           <div className="icon" onClick={handleButtonClick}>
             <PersonOutlinedIcon />
