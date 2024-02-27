@@ -54,10 +54,9 @@ function ShowBooking() {
         // setPayIsOpen(true);
         makeRequest.post(`/booking`, formData).then(res => {
             //Obtener id de la reserva creada y reemplazar
-            setBookId(res.data.id);
-            return setPayIsOpen(true);
+            return setBookId(res.data.id);
         });
-
+        setPayIsOpen(true);
     }
 
     return (
