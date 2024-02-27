@@ -117,7 +117,7 @@ function Navbar() {
 
   const handleNotifications = () => {
     makeRequest.get("/notification").then(res => {
-      return setNotificationsData(res.data);
+      setNotificationsData(res.data);
     })
     setNotificationsOpen(!notificationsOpen);
   }
@@ -148,7 +148,7 @@ function Navbar() {
           <NotificationsOutlinedIcon />
           {newNoti && <span> </span>}
         </div>}
-        {notificationsOpen && notificationsData.length > 0 ?
+        {notificationsOpen && notificationsData && notificationsData.length > 0 ?
           <div className="notifications">
             {notificationsData && notificationsData.map((noti) => (
               <div key={noti.id} className="notification">
