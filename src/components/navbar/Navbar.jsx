@@ -41,11 +41,14 @@ function Navbar() {
       connection.start()
         .then(result => {
           console.log('Conectado!');
+          console.log(result);
 
           // Aquí te suscribes a los mensajes
-          connection.on("notification", (message) => {
+          connection.on('notification', (message) => {
             const notification = JSON.parse(message);
-            
+
+            console.log(message);
+
             // Asegúrate de que el ID del usuario en la notificación coincide con el ID del usuario en el cliente
             if (notification.userId == currentUser.id) {
               console.log(notification);
