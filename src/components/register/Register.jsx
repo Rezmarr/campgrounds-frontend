@@ -20,7 +20,7 @@ function Register({ setRegisterIsOpen }) {
         evt.preventDefault();
 
         try {
-            await axios.post("http://kr6nmcwc-8080.brs.devtunnels.ms/api/auth/signin", inputs, {
+            await axios.post("https://4l17td47-5000.brs.devtunnels.ms/api/auth/signin", inputs, {
                 // withCredentials: true
             })
             //Manejar login

@@ -25,32 +25,32 @@ function Navbar() {
   const [registerIsOpen, setRegisterIsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
-  const [connection, setConnection] = useState(null);
+  // const [connection, setConnection] = useState(null);
 
-  useEffect(() => {
-    const newConnection = new HubConnectionBuilder()
-      .withUrl('http://kr6nmcwc-8080.brs.devtunnels.ms/api/socket') // reemplaza con tu URL
-      .withAutomaticReconnect()
-      .build();
+  // useEffect(() => {
+  //   const newConnection = new HubConnectionBuilder()
+  //     .withUrl('https://4l17td47-5000.brs.devtunnels.ms/api/socket') // reemplaza con tu URL
+  //     .withAutomaticReconnect()
+  //     .build();
 
-    setConnection(newConnection);
-  }, []);
+  //   setConnection(newConnection);
+  // }, []);
 
-  useEffect(() => {
-    if (connection) {
-      connection.start()
-        .then(result => {
-          console.log('Conectado!');
+  // useEffect(() => {
+  //   if (connection) {
+  //     connection.start()
+  //       .then(result => {
+  //         console.log('Conectado!');
 
-          // Aquí te suscribes a los mensajes
-          connection.on('notification', (bookingId) => {
-            console.log('Recibido un mensaje: ', bookingId);
-            // Aquí puedes añadir el código para procesar el mensaje
-          });
-        })
-        .catch(e => console.log('Falló la conexión: ', e));
-    }
-  }, [connection]);
+  //         // Aquí te suscribes a los mensajes
+  //         connection.on('notification', (bookingId) => {
+  //           console.log('Recibido un mensaje: ', bookingId);
+  //           // Aquí puedes añadir el código para procesar el mensaje
+  //         });
+  //       })
+  //       .catch(e => console.log('Falló la conexión: ', e));
+  //   }
+  // }, [connection]);
 
   const navigate = useNavigate();
 
