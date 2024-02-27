@@ -1,9 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import "./bookingList.scss";
+import { useEffect, useState } from "react";
+import { makeRequest } from "../../axios";
 
 function BookingList() {
 
     const navigate = useNavigate();
+    const [trips, setTrips] = useState(null);
+
+    useEffect(() => {
+        makeRequest.get("/booking").then(res => {
+            setTrips(res.data);
+            console.log(res.data);
+        })
+    }, [])
 
     return (
         <div className='bookingList'>

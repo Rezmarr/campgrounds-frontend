@@ -184,7 +184,7 @@ function Navbar() {
           <div className="userOptions" ref={optionsMoreRef}>
             <span>Perfil</span>
             <span>Métricas</span>
-            <span>Mis reservas</span>
+            <span onClick={() => navigate("/trips")}>Mis reservas</span>
             <span onClick={handleLogout}>Cerrar sesión</span>
           </div>
         }
