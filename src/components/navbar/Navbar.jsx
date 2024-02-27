@@ -43,14 +43,19 @@ function Navbar() {
           console.log('Conectado!');
 
           // Aquí te suscribes a los mensajes
-          connection.on('notification', (bookingId) => {
-            console.log('Recibido un mensaje: ', bookingId);
-            // Aquí puedes añadir el código para procesar el mensaje
+          connection.on("notification", (message) => {
+            const notification = JSON.parse(message);
+            
+            // Asegúrate de que el ID del usuario en la notificación coincide con el ID del usuario en el cliente
+            if (notification.userId == currentUser.id) {
+              console.log(notification);
+              // Aquí puedes manejar la notificación
+            }
           });
         })
         .catch(e => console.log('Falló la conexión: ', e));
     }
-  }, [connection]);
+  }, [connection, currentUser.id]);
 
   const navigate = useNavigate();
 
@@ -166,6 +171,7 @@ function Navbar() {
           <div className="userOptions" ref={optionsMoreRef}>
             <span>Perfil</span>
             <span>Métricas</span>
+            <span>Mis reservas</span>
             <span onClick={handleLogout}>Cerrar sesión</span>
           </div>
         }
