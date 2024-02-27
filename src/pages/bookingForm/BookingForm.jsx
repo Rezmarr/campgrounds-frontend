@@ -21,7 +21,15 @@ function ShowBooking() {
 
     const book = state && state.book;
 
-    // console.log(book)
+    const [formData, setFormData] = useState({
+        campgroundId: book.id,
+        arrivingDate: "",
+        leavingDate: "",
+        numNights: "",
+        pricePerNight: ""
+    });
+
+    console.log(book)
 
     useEffect(() => {
         moment().locale('es');
@@ -30,7 +38,7 @@ function ShowBooking() {
     useEffect(() => {
         // Resetea la posición de desplazamiento al principio de la página
         window.scrollTo(0, 0);
-      }, []);
+    }, []);
 
     if (payIsOpen) {
         document.body.classList.add('hide-scrollbar');
@@ -169,7 +177,7 @@ function ShowBooking() {
                     </div>
                 </div>
             </div>
-            {payIsOpen ? <Backdrop bookId={bookId}/> : <></>}
+            {payIsOpen ? <Backdrop bookId={bookId} /> : <></>}
         </div>
     )
 }
