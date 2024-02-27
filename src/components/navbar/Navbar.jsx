@@ -28,6 +28,7 @@ function Navbar() {
   const [connection, setConnection] = useState(null);
 
   const [newNoti, setNewNoti] = useState(false);
+  const [notificationsData, setNotificationsData] = useState(null);
 
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
@@ -114,6 +115,13 @@ function Navbar() {
   //   { id: 3, profilePic: "", name: "Leonardo" },
   // ]
 
+  const handleNotifications = () => {
+    makeRequest.get("/notification").then(res => {
+      return setNotificationsData(res.data);
+    })
+    setNotificationsOpen(!notificationsOpen);
+  }
+
   return (
     <div className="navbar">
       <div className="left">
@@ -136,17 +144,17 @@ function Navbar() {
       </div>
 
       <div className="right">
-        {currentUser && <div className="icon" onClick={() => setNotificationsOpen(!notificationsOpen)}>
+        {currentUser && <div className="icon" onClick={handleNotifications}>
           <NotificationsOutlinedIcon />
           {newNoti && <span> </span>}
         </div>}
-        {/* {notificationsOpen && notificationsData.length > 0 ?
+        {notificationsOpen && notificationsData.length > 0 ?
           <div className="notifications">
             {notificationsData && notificationsData.map((noti) => (
               <div key={noti.id} className="notification">
                 <div className="notiContainer">
-                  <img src={"/upload/" + noti.profilePic} alt="" />
-                  <span><span className="userEmisor">{noti.name}</span> Aquí va un mensaje</span>
+                  <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="usuario" />
+                  <span>noti.message</span>
                 </div>
                 <CancelIcon className="close" />
               </div>
@@ -154,7 +162,7 @@ function Navbar() {
           </div>
           :
           <></>
-        } */}
+        }
         {!currentUser ?
           <div className="icon" onClick={handleButtonClick}>
             <PersonOutlinedIcon />
