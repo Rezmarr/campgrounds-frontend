@@ -49,7 +49,7 @@ function Navbar() {
             const notification = JSON.parse(message);
 
             // Asegúrate de que el ID del usuario en la notificación coincide con el ID del usuario en el cliente
-            if (notification.userId == currentUser.id) {
+            if (notification.UserId == currentUser.id) {
               console.log(notification);
               setNewNoti(true);
               // Aquí puedes manejar la notificación
