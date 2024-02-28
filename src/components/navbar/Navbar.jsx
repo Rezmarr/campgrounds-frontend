@@ -40,7 +40,7 @@ function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (connection) {
+    if (currentUser && connection) {
       connection.start()
         .then(() => {
           console.log('Conectado!');
@@ -59,7 +59,7 @@ function Navbar() {
         })
         .catch(e => console.log('Falló la conexión: ', e));
     }
-  }, [connection, currentUser.id]);
+  }, [connection, currentUser]);
 
   const navigate = useNavigate();
 
