@@ -48,7 +48,7 @@ function BookDetails() {
                     <div className="right">
                         <div className="date">
                             <div className="checkIn">
-                                <h4>{moment(bookDetails.initialDate).format('ddd, mmm DD, YYYY')}</h4>
+                                <h4>{moment(bookDetails.initialDate).format('ddd, MMM DD, YYYY')}</h4>
                                 <span>Check-in time is 8AM - 5PM</span>
                             </div>
                             <div className="checkOut">
@@ -86,7 +86,7 @@ function BookDetails() {
                             <hr />
                             <div className="footer">
                                 <span>Total (PEN)</span>
-                                <span>S/{bookDetails.price}</span>
+                                <span>S/{bookDetails.total}</span>
                             </div>
                         </div>
                     </div>
