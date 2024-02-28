@@ -1,18 +1,4 @@
-@font-face {
-  font-family: 'MiFuente';
-  src: url('/fonts/CircularStd-Light.otf') format('truetype');
-  font-weight: normal; /* Peso ligero (light) */
-  /* text-rendering: optimizeLegibility; */
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'MiFuente';
-  src: url('/fonts/CircularStd-Book.otf') format('truetype');
-  font-weight: 700; /* Peso en negrita (bold) */
-  /* text-rendering: optimizeLegibility; */
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 #root,
 body {
@@ -20,9 +6,10 @@ body {
   height: 100dvh;
   padding: 0;
   width: 100%;
-  font-family: 'MiFuente', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: normal;
   box-sizing: unset;
+  box-sizing: border-box;
 }
 
 h1,

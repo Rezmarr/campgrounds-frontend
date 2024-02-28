@@ -7,7 +7,7 @@ export const AuthContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
 
     const login = async (inputs) => {
-        const res = await axios.post("https://4l17td47-5000.brs.devtunnels.ms/api/auth/login", inputs, {
+        const res = await axios.post("https://33gqb3f6-5000.brs.devtunnels.ms/api/auth/login", inputs, {
             withCredentials: true
         });
 

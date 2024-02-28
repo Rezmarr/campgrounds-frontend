@@ -29,17 +29,6 @@ function EditCampground() {
     setInputs((currInputs) => ({ ...currInputs, [e.target.name]: e.target.value }));
   }
 
-  // const upload = async () => {
-  //   try {
-  //     const formData = new FormData();
-  //     formData.append("files", files);
-  //     const res = await makeRequest.post("/upload", formData);
-  //     return res.data;
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
   const mutation = useMutation((campground) => {
     return makeRequest.put(`/campground/${data.id}`, campground);
   }, {
@@ -73,9 +62,12 @@ function EditCampground() {
     formData.append("Description", inputs.description);
     formData.append("Location", inputs.location);
     formData.append("ProvinceId", 1);
+    formData.append("ImagesToDelete", filesToDelete);
 
     // Agregar imágenes al FormData
-    formData.append("Images", data.images);
+    for (const file of files) {
+      formData.append("Images", file);
+    }
 
     const requestBody = formData;
 
@@ -84,17 +76,17 @@ function EditCampground() {
     // setFiles(null)
   };
 
-  const handlePicSelection = (pic) => {
-    setFilesToDelete((currFiles) => {
+  const handlePicSelection = (id) => {
+    setFilesToDelete((currItems) => {
       // Verifica si la imagen ya está en el arreglo
-      const isImageSelected = currFiles.includes(pic);
+      const isImageSelected = currItems.includes(id);
 
       if (isImageSelected) {
         // Si la imagen ya está en el arreglo, elimínala
-        return currFiles.filter((image) => image !== pic);
+        return currItems.filter((item) => item !== id);
       } else {
         // Si la imagen no está en el arreglo, agrégala
-        return [...currFiles, pic];
+        return [...currItems, id];
       }
     });
   };
@@ -125,13 +117,13 @@ function EditCampground() {
           </div></> : <></>}
         <div>Selecciona las imágenes que deseas eliminar</div>
         <div className="gallery">
-          {/* {data && data.pictures.map(pic => (
-            <ClickableImage key={pic} src={pic} handlePicSelection={handlePicSelection}/>
-          ))} */}
-          <ClickableImage key={1} src={data.picture} handlePicSelection={handlePicSelection} />
+          {data && data.images.map(image => (
+            <ClickableImage key={image.id} src={image.url} handlePicSelection={() => handlePicSelection(image.id)} />
+          ))}
+          {/* <ClickableImage key={1} src={data.picture} handlePicSelection={handlePicSelection} />
           <ClickableImage key={2} src={data.picture} handlePicSelection={handlePicSelection} />
           <ClickableImage key={3} src={data.picture} handlePicSelection={handlePicSelection} />
-          <ClickableImage key={4} src={data.picture} handlePicSelection={handlePicSelection} />
+          <ClickableImage key={4} src={data.picture} handlePicSelection={handlePicSelection} /> */}
         </div>
         <div className="item">
           <label htmlFor="price">Precio del campamento:</label>
