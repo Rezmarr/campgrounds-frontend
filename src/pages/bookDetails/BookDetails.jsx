@@ -31,7 +31,7 @@ function BookDetails() {
                 <div className="back">
                     <button onClick={() => navigate("/trips")}><ArrowBackIosNewIcon className="arrow" />Regresar a todas las reservas</button>
                 </div>
-                <div className="wrapper">
+                {bookDetails && <div className="wrapper">
                     <div className="left">
                         <h2>Tu reserva está confirmada</h2>
                         <h4>Tienes una reserva en {bookDetails.location}!</h4>
@@ -90,7 +90,7 @@ function BookDetails() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>}
             </div>
         </div>
     )
