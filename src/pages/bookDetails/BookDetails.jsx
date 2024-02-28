@@ -34,11 +34,11 @@ function BookDetails() {
                 {bookDetails && <div className="wrapper">
                     <div className="left">
                         <h2>Tu reserva está confirmada</h2>
-                        <h4>Tienes una reserva en {bookDetails.location}!</h4>
-                        <img src={bookDetails.images[0].url} alt="" />
+                        <h4>Tienes una reserva en {bookDetails.campground.location}!</h4>
+                        <img src={bookDetails.campground.images[0].url} alt="" />
                         <div className="place">
                             <div className="text">
-                                <h4>{bookDetails.title}</h4>
+                                <h4>{bookDetails.campground.title}</h4>
                                 <span>Estadía de {bookDetails.host.firstName} {bookDetails.host.lastName}</span>
                             </div>
                             <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="" />
@@ -58,7 +58,7 @@ function BookDetails() {
                         </div>
                         <div className="item">
                             <span className="name">Dirección</span>
-                            <span className="address">{bookDetails.location}</span>
+                            <span className="address">{bookDetails.campground.location}</span>
                         </div>
                         <div className="item">
                             <span className="name">Conoce a tu host</span>
