@@ -8,17 +8,15 @@ import moment from 'moment';
 function BookDetails() {
 
     const navigate = useNavigate();
-    const { id } = useParams();
-
-    console.log(id);
+    const { bookId } = useParams();
 
     const [bookDetails, setBookDetails] = useState(null);
 
     useEffect(() => {
-        makeRequest.get(`/booking/${id}`).then(res => {
+        makeRequest.get(`/booking/${bookId}`).then(res => {
             setBookDetails(res.data);
         })
-    }, [id])
+    }, [bookId])
 
     return (
         <div className='bookDetails'>
@@ -37,13 +35,13 @@ function BookDetails() {
                     <div className="left">
                         <h2>Tu reserva está confirmada</h2>
                         <h4>Tienes una reserva en {bookDetails.location}!</h4>
-                        <img src="" alt="" />
+                        <img src={bookDetails.images[0].url} alt="" />
                         <div className="place">
                             <div className="text">
                                 <h4>{bookDetails.title}</h4>
                                 <span>Estadía de {bookDetails.host.firstName} {bookDetails.host.lastName}</span>
                             </div>
-                            <img src="" alt="" />
+                            <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="" />
                         </div>
 
                     </div>
