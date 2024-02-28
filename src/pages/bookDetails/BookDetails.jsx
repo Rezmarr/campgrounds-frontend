@@ -39,7 +39,7 @@ function BookDetails() {
                         <div className="place">
                             <div className="text">
                                 <h4>{bookDetails.campground.title}</h4>
-                                <span>Estadía de {bookDetails.host.firstName} {bookDetails.host.lastName}</span>
+                                <span>Estadía de {bookDetails.campground.host.firstName} {bookDetails.campground.host.lastName}</span>
                             </div>
                             <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="" />
                         </div>
@@ -62,7 +62,7 @@ function BookDetails() {
                         </div>
                         <div className="item">
                             <span className="name">Conoce a tu host</span>
-                            <span className="itemText">Contacta a Leanne para coordinar la llegada y la entrega de llaves: <span>{bookDetails.host.email}</span></span>
+                            <span className="itemText">Contacta a Leanne para coordinar la llegada y la entrega de llaves: <span>{bookDetails.campground.host.email}</span></span>
                         </div>
                         <div className="rules">
                             <div className="info">
