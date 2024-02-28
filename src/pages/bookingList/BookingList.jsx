@@ -29,7 +29,7 @@ function BookingList() {
                                 </div>
                                 <div className="bottom">
                                     <div className="dates">
-                                        <h2>{moment(trip.arrivingDate).format('DD mmm')} - {moment(trip.leavingDate).format('DD mmm')}</h2>
+                                        <h2>{moment(trip.arrivingDate).format('DD MMM')} - {moment(trip.leavingDate).format('DD MMM')}</h2>
                                         <span>{moment(trip.leavingDate).format('YYYY')}</span>
                                     </div>
                                     <hr />
