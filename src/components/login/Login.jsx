@@ -4,6 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useGoogleLogin } from "@react-oauth/google";
 import { AuthContext } from "../../context/authContext";
 import { makeRequestPublic } from "../../axios";
+import axios from "axios";
 
 function Login({ setLoginIsOpen }) {
 
@@ -26,7 +27,9 @@ function Login({ setLoginIsOpen }) {
 
     const googleLogin = useGoogleLogin({
         onSuccess: async (credentials) => {
-            makeRequestPublic.post(`/auth/google?accessToken=${credentials.access_token}`).then(res => {
+            axios.post(`https://33gqb3f6-5000.brs.devtunnels.ms/auth/google?accessToken=${credentials.access_token}`, {
+                withCredentials: true
+            }).then(res => {
                 console.log(res.data);
                 setCurrentUser(res.data);
             });
