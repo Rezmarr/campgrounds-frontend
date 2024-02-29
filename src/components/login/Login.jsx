@@ -27,7 +27,7 @@ function Login({ setLoginIsOpen }) {
 
     const googleLogin = useGoogleLogin({
         onSuccess: async (credentials) => {
-            axios.post(`https://33gqb3f6-5000.brs.devtunnels.ms/api/auth/google?accessToken=${credentials.access_token}`, {
+            axios.post(`https://x4nk3hhp-5000.brs.devtunnels.ms/api/auth/google?accessToken=${credentials.access_token}`, {
                 withCredentials: true
             }).then(res => {
                 console.log(res.data);

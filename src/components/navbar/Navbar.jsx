@@ -32,7 +32,7 @@ function Navbar() {
 
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
-      .withUrl('https://33gqb3f6-5000.brs.devtunnels.ms/notifications') // reemplaza con tu URL
+      .withUrl('https://x4nk3hhp-5000.brs.devtunnels.ms/notifications') // reemplaza con tu URL
       .withAutomaticReconnect()
       .build();
 
