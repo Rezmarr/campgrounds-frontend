@@ -150,7 +150,7 @@ function ShowBooking() {
                     <div className="right">
                         <div className="details">
                             <div className="header">
-                                <img src="" alt="" />
+                                <img src={book.images[0].url} alt="" />
                                 <div className="info">
                                     <span className="name">{book.title}</span>
                                     <span className="location">{book.location}</span>
