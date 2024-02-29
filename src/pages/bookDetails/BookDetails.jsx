@@ -48,11 +48,11 @@ function BookDetails() {
                     <div className="right">
                         <div className="date">
                             <div className="checkIn">
-                                <h4>{moment(bookDetails.initialDate).format('ddd, MMM DD, YYYY')}</h4>
+                                <h4>{moment(bookDetails.arrivingDate).format('ddd, MMM DD, YYYY')}</h4>
                                 <span>Check-in time is 8AM - 5PM</span>
                             </div>
                             <div className="checkOut">
-                                <h4>{moment(bookDetails.finalDate).format('ddd, MMM DD, YYYY')}</h4>
+                                <h4>{moment(bookDetails.leavingDate).format('ddd, MMM DD, YYYY')}</h4>
                                 <span>Check-out 11AM</span>
                             </div>
                         </div>
