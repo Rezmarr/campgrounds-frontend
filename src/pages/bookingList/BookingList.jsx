@@ -34,7 +34,7 @@ function BookingList() {
                                     </div>
                                     <hr />
                                     <div className="location">
-                                        <h2>{trip.location}</h2>
+                                        <h2>{trip.campground.location}</h2>
                                         {/* <span>Location</span> */}
                                     </div>
                                 </div>
